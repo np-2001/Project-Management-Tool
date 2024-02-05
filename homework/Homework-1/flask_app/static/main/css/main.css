@@ -1,0 +1,43 @@
+.Main-Text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    width: 100vw;
+
+
+
+}
+
+.about {
+    display: flex;
+    flex-direction: row;
+    max-height: 50vh;
+    width: 80vw;
+
+}
+
+.personal-photo, .personal-description {
+    flex: 1;
+    
+
+}
+
+.personal-description {
+    overflow: auto;
+    text-align: justify;
+    text-justify: center;
+
+}
+
+#personal-pic {
+    width: 100%;
+    height: 100%;
+}
+
+.fun-fact {
+    width: 100%;
+    text-align: center;
+    margin-top: 20
+}
