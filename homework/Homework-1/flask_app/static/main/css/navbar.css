@@ -20,13 +20,16 @@
 }
 
 #homework {
-    padding-left: 5%;
+    
+    padding: 1vh;
     flex: 6;
+    margin: 1vw;
     
     
 }
 
 .navitems {
+    padding: 1%;
     flex: 1;
 
 }
