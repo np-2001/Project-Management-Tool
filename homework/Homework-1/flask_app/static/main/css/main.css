@@ -21,7 +21,8 @@
 
 .personal-photo, .personal-description {
     flex: 1;
-    
+    max-width: 100%;
+    max-height: auto;
 
 }
 
@@ -62,7 +63,6 @@
     }
 
     .fun-fact {
-        width: 100%;
         text-align: center;
         text-justify: center;
         margin-top: 20;
@@ -79,6 +79,14 @@
         
 
     }
+
+    .personal-photo, .personal-description {
+        flex: 1;
+        max-width: 100%;
+        max-height: auto;
+    
+    }
+    
 
     
 }
