@@ -36,7 +36,7 @@
 
 #personal-pic {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .fun-fact {
@@ -51,20 +51,20 @@
 
     .about {
     
-        overflow-y: visible;
-        display: flex;
+        overflow: visible;
         flex-direction: column;
-        text-align: center;
-        text-justify: center;
-        height: 50vh;
-        gap: 20px;
+
+
 
 
     }
 
-    .Main-Text {
+
+    .personal-description, .personal-photo, .fun-fact {
         width: 80vh;
     }
+
+    
     
 
     
