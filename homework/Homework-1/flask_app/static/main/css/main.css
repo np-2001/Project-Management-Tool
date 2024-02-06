@@ -62,29 +62,8 @@
 
     }
 
-    .fun-fact {
-        text-align: center;
-        text-justify: center;
-        margin-top: 20;
-        width: 80vh;
-    }
-
     .Main-Text {
-        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 80vh;
-        
-
-    }
-
-    .personal-photo, .personal-description {
-        flex: 1;
-        max-width: 100%;
-        max-height: auto;
-    
+        width: 80vh;
     }
     
 
