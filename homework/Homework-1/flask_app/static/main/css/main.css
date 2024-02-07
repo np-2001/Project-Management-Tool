@@ -5,6 +5,7 @@
     justify-content: center;
     height: 80vh;
     width: 100vw;
+    max-width: 100%;
 
 
 
@@ -47,6 +48,18 @@
 
 }
 
+#purpose {
+    text-align: center;
+    text-justify: center;
+
+}
+
+
+
+
+
+
+
 @media screen and (max-width: 650px) {
 
     .about {
@@ -58,8 +71,9 @@
 
 
     .personal-description, .personal-photo, .fun-fact {
-        width: 80vh;
+        width: 80vw;
     }
+    
 
     
     
