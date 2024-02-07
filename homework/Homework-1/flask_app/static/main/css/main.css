@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    min-height: 80vh;
     width: 100vw;
     max-width: 100%;
 
@@ -14,7 +14,7 @@
 .about {
     display: flex;
     flex-direction: row;
-    max-height: 50vh;
+    
     width: 80vw;
     gap: 20px;
 
@@ -86,6 +86,8 @@
     .about { 
 
         flex-direction: column;
+        min-height: auto;
+        height: auto;
   
     }
 
@@ -98,12 +100,13 @@
 
     .personal-description {
         overflow-y: visible;
+ 
     }
-  
-    
+
+    .fun-fact {
+        padding-bottom: 10%;
+    }
 
     
-    
 
-    
 }
