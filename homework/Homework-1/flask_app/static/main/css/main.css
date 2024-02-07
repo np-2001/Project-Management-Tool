@@ -47,9 +47,11 @@
 .fun-fact {
     width: 100%;
     align-items: center;
-    text-align: justify;
+    text-align: center;
     text-justify: inter-word;
     margin-top: 20;
+    margin-left: auto;
+    margin-right: auto;
     
 }
 
