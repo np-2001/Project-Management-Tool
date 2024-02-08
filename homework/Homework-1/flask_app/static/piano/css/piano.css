@@ -11,21 +11,65 @@ body {
     flex-direction: column;
     justify-content: center; 
     align-items: center;
+    position: relative;
     width: 100%;
     height: 100%;
 }
 
 .piano {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: #636363;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-end;
     width: 50%; 
     height: 50%; 
     border-radius: 5% 5% 0 0;
-    align-items: flex-end; 
+
     padding: 3%;
     margin-bottom: 10%;
+
+}
+
+.image-and-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center; 
+    position: absolute;
+    width: 55%; 
+    height: 55%;
+    top: 15%;
+    opacity: 0; /* So my old one image does not appear */
+
+
+}
+.old-one {
+    position: absolute;
+    
+    z-index: -3;
+    width: 100%; 
+    height: 100%; 
+    border-radius: 10% 10% 0 0;
+
+}
+
+.Old-one-text {
+    z-index: -3;
+    color:#fff;
+    position: absolute;
+    
+}
+
+
+
+.keys {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end; 
+    justify-content: center;
+    width: 100%; 
+    height: 100%; 
 
 }
 
@@ -33,6 +77,12 @@ body {
 
 .white-key, .black-key {
     border-radius: 5% 5% 5% 5%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: #636363;
+
 }
 
 .white-key {
@@ -49,6 +99,7 @@ body {
 
 .black-key {
     background-color: #000; 
+    
     width: 7%;
     height: 45%;
     top: -10%;
@@ -58,3 +109,11 @@ body {
     margin-right: -4%;
 
 }
+
+
+.letter { 
+    opacity: 0%;
+} 
+   
+  
+

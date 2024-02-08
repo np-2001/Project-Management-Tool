@@ -19,8 +19,7 @@
     max-height: 50vh;
     width: 80vw;
     gap: 20px;
-    padding-top: 10%;
-
+    padding-top: 5%;
 
 }
 
@@ -28,6 +27,7 @@
     flex: 1;
     max-width: 100%;
     max-height: auto;
+
 
 }
 
