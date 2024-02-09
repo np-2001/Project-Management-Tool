@@ -105,6 +105,7 @@ function logKey(e) {
             const piano_instrument = document.querySelector(".piano");
             monster.style.opacity = "100%"
             piano_instrument.style.opacity = "0%"
+            
 
         }
         
