@@ -31,6 +31,10 @@ body {
 
 }
 
+.piano-text {
+    margin-bottom: 10%;
+}
+
 .image-and-text {
     display: flex;
     flex-direction: column;
@@ -69,7 +73,8 @@ body {
     align-items: flex-end; 
     justify-content: center;
     width: 100%; 
-    height: 100%; 
+    height: 80%; 
+    z-index: 2;
 
 }
 
@@ -80,17 +85,19 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
+    
     align-items: flex-end;
     color: #636363;
+    flex-grow: 1;
+
 
 }
 
 .white-key {
     background-color: #fff; 
     width: 8%; 
-    height: 55%; 
+    height: 100%; 
     z-index: 0; 
-    position: relative;
 
 
     border: 1px solid #ccc; 
@@ -101,9 +108,8 @@ body {
     background-color: #000; 
     
     width: 7%;
-    height: 45%;
-    top: -10%;
-    position: relative;
+    height: 56%;
+    top: -45%;
     z-index: 1; 
     margin-left: -4%;
     margin-right: -4%;
