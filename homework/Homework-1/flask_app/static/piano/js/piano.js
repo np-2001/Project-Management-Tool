@@ -103,14 +103,19 @@ function logKey(e) {
             console.log("I have awoken!!!");
             const monster = document.querySelector(".image-and-text");
             const piano_instrument = document.querySelector(".piano");
-            monster.style.opacity = "100%"
-            piano_instrument.style.opacity = "0%"
             
+            piano_instrument.style.opacity = "0%"
+            const monster_audio = new Audio('https://orangefreesounds.com/wp-content/uploads/2020/09/Creepy-piano-sound-effect.mp3?_=1');   
+            monster_audio.play(); 
+
+            monster.style.opacity = "100%";
+
+
 
         }
         
 
-        console.log(index);
+
     } 
 
 }
