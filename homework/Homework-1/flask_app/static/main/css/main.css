@@ -37,7 +37,7 @@
 
 /* Styling for just description */
 .personal-description {
-    overflow-y: auto;
+    overflow-y: scroll;
     width: 100%;
     height: auto;
     
