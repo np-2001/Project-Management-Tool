@@ -85,8 +85,8 @@
 
 /* Menu Bar item up styling */
 #menubar {
-    border: none;
     display: none;
+
 }
 
 /* Menu bar image styling */
@@ -94,7 +94,13 @@
     height: 4vh;
     max-width: 100%;
 
+
 } 
+
+.MButton {
+    background-color: transparent;
+    border: none;
+}
 
 /* Styling for linkedin text */
 #linkedinText {
