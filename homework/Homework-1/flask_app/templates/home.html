@@ -13,41 +13,56 @@
         <title> Home page </title>
     </head>
     <body>
+        <!-- Header -->
+
         <header>
             <img id="banner" src="static/main/images/banner.jpg" alt="Banner Image" loading="lazy"> 
         </header>
-        <nav class="navbar">  
-            <ul>
+
+        <!-- Navbar -->
+        <nav class="navbar-design navbar-structure">  
+            <ul class="menu-nav-design menu-nav-structure">
                 <li id="homework"> CSE 477 - Homework 1</li>
-                <li class="navitems" id="home"><a class="link" href="home.html">Home</a></li>
-                <li class="navitems" id="project"><a class="link" href="projects.html">Projects</a></li>
-                <li class="navitems" id="resume"><a class="link" href="static/main/resume/Nitin_2024_Resume.pdf">Resume</a></li>
-                <li class="navitems" id="linkedin"><a class="link" href="https://www.linkedin.com/in/nitin-polavarapu/"><img id="LinkedIn" src="static/main/images/social-linkedin.png" alt="LinkedIn Image" loading="lazy"> </a></li>
+                <li class="navitems" id="home"><a class="link-style link-structure" href="home.html">Home</a></li>
+                <li class="navitems" id="project"><a class="link-style link-structure" href="projects.html">Projects</a></li>
+                <li class="navitems" id="resume"><a class="link-style link-structure" href="static/main/resume/Nitin_2024_Resume.pdf">Resume</a></li>
+                <li class="navitems" id="linkedin"><a class="link-style link-structure" href="https://www.linkedin.com/in/nitin-polavarapu/"><img id="LinkedIn" src="static/main/images/social-linkedin.png" alt="LinkedIn Image" loading="lazy"> </a></li>
 
                 <li class="navitems" id="menubar"><button type="button" class="MButton"> <img id="MenuImage" src="static/main/images/menu-bar.png" alt="MenuBar Image" loading="lazy"></button> </li>
 
 
             </ul>
 
-            <div id="menu-overlay" class="menu-overlay">
-                <nav class="overlay-nav">
-                    <ul id="menu-nav">
-                        <li class="menuitem"><a class="link" href="home.html">Home</a></li>
-                        <li class="menuitem"><a class="link" href="projects.html">Projects</a></li>
-                        <li class="menuitem"><a class="link" href="static/main/resume/Nitin_2024_Resume.pdf">Resume</a></li>
-                        <li class="menuitem"> <a class="link" href="https://www.linkedin.com/in/nitin-polavarapu/">LinkedIn</a> </li>
+            <!-- Used when screen is less than 650px -->
+
+            <div id="menu-overlay" class="menu-overlay-style" >
+                <nav>
+                    <ul id="menu_nav">
+                        <li class="menuitem"><a class="link-style link-structure" href="home.html">Home</a></li>
+                        <li class="menuitem"><a class="link-style link-structure" href="projects.html">Projects</a></li>
+                        <li class="menuitem"><a class="link-style link-structure" href="static/main/resume/Nitin_2024_Resume.pdf">Resume</a></li>
+                        <li class="menuitem"> <a class="link-style link-structure" href="https://www.linkedin.com/in/nitin-polavarapu/">LinkedIn</a> </li>
                     </ul>
                     
                 </nav>
             </div>
 
         </nav>
+
+        <!-- Main body of home -->
+
         <main class="Main-Text"> 
             
+
             <div class="about">
+                <!-- Picture of me -->
+
                 <div class="personal-photo">
-                    <img id="personal-pic" src="static/main/images/myimage.jpeg" alt="MenuBar Image" loading="lazy">
+                    <img id="personal-pic" src="static/main/images/myimage.jpeg" alt="My Image" loading="lazy">
                 </div>
+
+                <!-- description of me -->
+
                 <div class="personal-description">
                     
                     <p> <span id="name"> Nitin Polavarapu</span>  is a undergraduate student from Okemos MI, who is currently studying at Michigan State University. At Michigan State, he is studying for a Bachelor's of Computer Science and is currently in the bs/ms program which will allow him to also obtain a Masters of Computer Science. He plans to graduate in December 2024 with a Bachelors degree, and then in December 2025 with a Masters degree. </p>
@@ -59,12 +74,18 @@
                     <p> When it comes to his hobbies, Nitin is a big fan of Basketball and Football (Lions winning next year!!!). Along with that he is a avid biker and one-wheel rider.   </p>
                 </div>
             </div>
+
+            <!-- Fun Fact -->
+
             <div class="fun-fact">
                 <h1>Fun fact about me: </h1>
                 <p> I was once studying chemical engineering</p>
             </div>
         </main>
-        <footer id="bottom-footer"> © Nitin Polavarapu </footer>
+
+        <!-- Footer -->
+
+        <footer class="bottom-footer-style" id="bottom-footer"> © Nitin Polavarapu </footer>
         <script src="static/main/js/navbar.js"></script>
     </body>
 </html>

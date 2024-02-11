@@ -1,27 +1,33 @@
 
 const key_letters = document.querySelectorAll(".letter");
 
-const piano = document.querySelector(".keys")
+const piano_keys = document.querySelector(".keys");
 
-piano.addEventListener('mouseover',DisplayLetters);
-piano.addEventListener('mouseout',HideLetters);
 
-function DisplayLetters() {
+//Displays letters when hovering over piano
+DisplayLetters = function () {
     for (const letter of key_letters) {
         letter.style.opacity = '100%';
     }
     
 }
 
+//Event listener when hovering over keys
+piano_keys.addEventListener('mouseover',DisplayLetters);
 
-function HideLetters() {
+
+// Hides keys when off piano
+HideLetters = function() {
     for (const letter of key_letters) {
         letter.style.opacity = '0%';
     }
     
 }
 
+//Event listener when hovering off keys
+piano_keys.addEventListener('mouseout',HideLetters);
 
+// Sounds of piano
 const sound = {65:"http://carolinegabriel.com/demo/js-keyboard/sounds/040.wav",
                 87:"http://carolinegabriel.com/demo/js-keyboard/sounds/041.wav",
                 83:"http://carolinegabriel.com/demo/js-keyboard/sounds/042.wav",
@@ -41,8 +47,7 @@ const sound = {65:"http://carolinegabriel.com/demo/js-keyboard/sounds/040.wav",
                 59:"http://carolinegabriel.com/demo/js-keyboard/sounds/056.wav",
                 186:"http://carolinegabriel.com/demo/js-keyboard/sounds/056.wav"};
 
-//Learned about set from here
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+
 const black_keys = {87:document.querySelector("#W"),
                     69:document.querySelector("#E"),
                     84:document.querySelector("#T"),
@@ -64,11 +69,13 @@ const white_keys = {65:document.querySelector("#A"),
                     186:document.querySelector("#semi")};
 
 
-document.addEventListener('keydown',logKey);
+
+//The string to make the monster to appear
 const weseeyou = "weseeyou";
 let index = 0;
 let awaken = false;
-function logKey(e) {
+
+logKey = function(e) {
     console.log(awaken);
     if (!awaken) {
 
@@ -93,9 +100,9 @@ function logKey(e) {
         audio.play();
         
         if (e.key === weseeyou[index]) {
-            index = index+1
+            index = index+1;
         } else {
-            index = 0
+            index = 0;
         }
 
         if (index === weseeyou.length) {
@@ -104,7 +111,7 @@ function logKey(e) {
             const monster = document.querySelector(".image-and-text");
             const piano_instrument = document.querySelector(".piano");
             
-            piano_instrument.style.opacity = "0%"
+            piano_instrument.style.opacity = "0%";
             const monster_audio = new Audio('https://orangefreesounds.com/wp-content/uploads/2020/09/Creepy-piano-sound-effect.mp3?_=1');   
             monster_audio.play(); 
 
@@ -120,11 +127,13 @@ function logKey(e) {
 
 }
 
+// Event listener for pressing keys down
+document.addEventListener('keydown',logKey);
 
 
-document.addEventListener('keyup',logKeyUp)
 
-function logKeyUp(e) {
+
+logKeyUp = function (e) {
     const key_code = e.keyCode;
     if (key_code in black_keys) {
         const key = black_keys[key_code];
@@ -138,3 +147,7 @@ function logKeyUp(e) {
 
     }
 }
+
+// Event listener for letting go of keys
+
+document.addEventListener('keyup',logKeyUp)

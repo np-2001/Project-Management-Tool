@@ -1,5 +1,5 @@
+/* Styling for footer */
 #bottom-footer {
-    background-color: #f5f5dc;
     text-justify: justify;
     text-align: center;
     margin-top: auto;
@@ -7,7 +7,14 @@
 
     position: fixed;
     width: 100%; 
-    left: 0px;
-    bottom: 0px;
+    left: 0%;
+    bottom: 0%;
 
 }
+
+.bottom-footer-style {
+    background-color: #f5f5dc;
+
+
+}
+

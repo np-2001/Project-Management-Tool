@@ -1,11 +1,15 @@
+/* Styling for html page */
 #page-html {
     height: 100%;
     width: 100%;
 }
 
+/* Styling for body */
 #page-body {
     height: 100%;
 }
+
+/* Styling for piano section */
 .Piano-Project {
     display: flex;
     flex-direction: column;
@@ -16,10 +20,11 @@
     height: 100%;
 }
 
+/* Styling for piano */
 .piano {
     display: flex;
     flex-direction: column;
-    background-color: #636363;
+    
     align-items: center;
     justify-content: flex-end;
     width: 50%; 
@@ -34,12 +39,25 @@
 
 }
 
-.piano-text {
-    margin-bottom: 10%;
-    text-align: center;
-    text-justify: inter-word;
+.piano-style {
+    background-color: #636363;
 }
 
+/* Styling for text in piano */
+.piano-text {
+    
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 2vw;
+}
+
+/* Structure for text in piano */
+.piano-text-structure {
+    margin-bottom: 10%;
+
+}
+
+/* Styling for monster image and text container */
 .image-and-text {
     display: flex;
     flex-direction: column;
@@ -55,6 +73,8 @@
 
 
 }
+
+/* Styling for old-one */
 .old-one {
     position: relative;
     
@@ -64,13 +84,21 @@
 
 }
 
+/* Styling for text in monster image */
 .Old-one-text {
     color:#fff;
-    position: absolute;
-    top: 10%
+
     
 }
 
+/* Structure of old one text */
+.Old-one-text-structure {
+    position: absolute;
+    top: 10%
+
+}
+
+/* Styling for container that has keys */
 .keys {
     display: flex;
     flex-direction: row;
@@ -82,6 +110,7 @@
 
 }
 
+/* Styling for the text at the top of page */
 .poem {
     text-align: center;
     text-justify: inter-word;
@@ -90,6 +119,7 @@
 
 }
 
+/* Styling for both key types */
 .white-key, .black-key {
     border-radius: 5% 5% 5% 5%;
     position: relative;
@@ -97,25 +127,38 @@
     justify-content: center;
     
     align-items: flex-end;
-    color: #636363;
+
     flex-grow: 1;
 
 
 }
 
+.white-key-style, .black-key-style {
+    color: #636363;
+
+}
+
+/* Styling for just white key */
 .white-key {
-    background-color: #fff; 
+    
     width: 8%; 
     height: 100%; 
     z-index: 0; 
 
 
-    border: 1px solid #ccc; 
+
 
 }
 
+.white-key-style {
+    border: 0.25rem solid #ccc; 
+    background-color: #fff; 
+
+}
+
+/* Styling for just black key */
 .black-key {
-    background-color: #000; 
+    
     
     width: 7%;
     height: 56%;
@@ -126,12 +169,17 @@
 
 }
 
+.black-key-style {
+    background-color: #000; 
 
+}
+
+/* Styling for letters in keys */
 .letter { 
     opacity: 0%;
 } 
 
-
+/* Styling for black key letters */
 #black {
     color: #FFF;
 }
