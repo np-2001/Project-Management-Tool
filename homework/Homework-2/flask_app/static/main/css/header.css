@@ -1,0 +1,17 @@
+/* Resetting The page to 0 margin and padding */
+* { margin: 0%;
+    padding: 0%;
+
+}
+
+
+/* Styling for banner */
+#banner {
+    margin: 0%;
+    padding: 0%;
+    width: 100vw;
+    height: 10vh;
+    max-width: 100%;
+
+    display: block;
+}

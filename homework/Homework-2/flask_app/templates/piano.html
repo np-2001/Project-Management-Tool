@@ -1,0 +1,47 @@
+{% extends 'shared/layout.html' %}
+
+{% block maincontent %}
+        <!-- Main body of piano -->
+<main class="Piano-Project"> 
+    <div class="poem"> "Behold piano great and old, it's master slumbers in far off cold, If you wish to see anew, call out to it - we see you"</div>
+
+    <div class="piano piano-style">
+
+        <h1 class="piano-text piano-text-structure"> The Great Old One </h1>
+
+        <!-- Keys of piano -->
+        <div class="keys">
+            <div class="white-key white-key-style" id="A">  <div class="letter"> A </div> </div>
+            <div class="black-key black-key-style" id="W"> <div class="letter" id="black"> W </div> </div>
+            <div class="white-key white-key-style" id="S"> <div class="letter"> S </div> </div>
+            <div class="black-key black-key-style" id="E"> <div class="letter" id="black"> E </div> </div>
+            <div class="white-key white-key-style" id="D"> <div class="letter"> D </div> </div>
+            <div class="white-key white-key-style" id="F"> <div class="letter"> F </div> </div>
+            <div class="black-key black-key-style" id="T"> <div class="letter" id="black"> T </div> </div>
+            <div class="white-key white-key-style" id="G"> <div class="letter"> G </div> </div>
+            <div class="black-key black-key-style" id="Y"> <div class="letter" id="black"> Y </div> </div>
+            <div class="white-key white-key-style" id="H"> <div class="letter"> H </div> </div>
+            <div class="black-key black-key-style" id="U"> <div class="letter" id="black"> U </div> </div>
+            <div class="white-key white-key-style" id="J"> <div class="letter"> J </div> </div>
+            <div class="white-key white-key-style" id="K"> <div class="letter"> K </div> </div>
+            <div class="black-key black-key-style" id="O"> <div class="letter" id="black"> O </div> </div>
+            <div class="white-key white-key-style" id="L"> <div class="letter"> L </div> </div>
+            <div class="black-key black-key-style" id="P"> <div class="letter" id="black"> P </div> </div>
+            <div class="white-key white-key-style" id="semi"> <div class="letter"> ; </div> </div>
+        </div>
+
+    </div>
+
+    <!-- Old one monster image and text -->
+    <div class="image-and-text">
+        <img class="old-one" src="{{ url_for('static', filename='piano/images/texture.jpeg') }}" alt="old one" loading="lazy">
+        <div class="Old-one-text Old-one-text-structure"> I have awoken </div>
+    </div>
+
+</main>
+
+
+
+
+
+{% endblock %}

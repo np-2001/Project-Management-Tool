@@ -1,0 +1,19 @@
+/* Styling for footer */
+#bottom-footer {
+    text-justify: justify;
+    text-align: center;
+    margin-top: auto;
+    padding-top: 1%;
+
+    position: fixed;
+    width: 100%; 
+    left: 0%;
+    bottom: 0%;
+
+}
+
+.bottom-footer-style {
+    background-color: #f5f5dc;
+
+
+}

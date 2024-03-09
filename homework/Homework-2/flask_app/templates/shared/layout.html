@@ -4,11 +4,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dr. Ghassemi's personal page</title>
+  <title>Nitin Polavarapu's personal page</title>
+  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/header.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/navbar.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/footer.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/main.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='piano/css/piano.css') }}">
+
+
+
   <link rel="shortcut icon" href="{{ url_for('static', filename='main/images/favicon.ico') }}">
   {% block extracss %}{% endblock %}
   <script src="{{ url_for('static', filename='main/js/main.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='main/js/navbar.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='piano/js/piano.js') }}" defer></script>
+
+
   {% block extrajs %}{% endblock %}
 </head>
 
@@ -16,33 +27,52 @@
     <article>
     <!-- The header  -->
     <header>
-        <p> The future home of an amazing header </p>
+      <img id="banner" src="{{ url_for('static', filename='main/images/banner.jpg') }}" alt="Banner Image" loading="lazy"> 
     </header>
 
+
     <!-- The navigation bar -->
-    <nav>
-      <div>
-        <p>CSE 477 - Homework 2</p>
+    <nav class="navbar-design navbar-structure">  
+      <ul class="menu-nav-design menu-nav-structure">
+          <li id="homework"> CSE 477 - Homework 2</li>
+          <li class="navitems" id="home"><a class="link-style link-structure" href="/home">Home</a></li>
+          <li class="navitems" id="project"><a class="link-style link-structure" href="/projects">Projects</a></li>
+          <li class="navitems" id="resume"><a class="link-style link-structure" href="static/main/resume/Nitin_2024_Resume.pdf">Resume</a></li>
+          <li class="navitems" id="linkedin"><a class="link-style link-structure" href="https://www.linkedin.com/in/nitin-polavarapu/"><img id="LinkedIn" src="{{ url_for('static', filename='main/images/social-linkedin.png') }}" alt="LinkedIn Image" loading="lazy"> </a></li>
+
+          <li class="navitems" id="menubar"><button type="button" class="MButton"> <img id="MenuImage" src="{{ url_for('static', filename='main/images/menu-bar.png') }}" alt="MenuBar Image" loading="lazy"></button> </li>
+
+
+      </ul>
+
+      <!-- Used when screen is less than 650px -->
+
+      <div id="menu-overlay" class="menu-overlay-style" >
+          <nav>
+              <ul id="menu_nav">
+                  <li class="menuitem"><a class="link-style link-structure" href="home.html">Home</a></li>
+                  <li class="menuitem"><a class="link-style link-structure" href="projects.html">Projects</a></li>
+                  <li class="menuitem"><a class="link-style link-structure" href="static/main/resume/Nitin_2024_Resume.pdf">Resume</a></li>
+                  <li class="menuitem"> <a class="link-style link-structure" href="https://www.linkedin.com/in/nitin-polavarapu/">LinkedIn</a> </li>
+              </ul>
+              
+          </nav>
       </div>
 
-    <div class="links">
-      <a href="/home">Home</a>
-      <a href="/resume">Resume</a>
-    </div>
-    </nav>
+  </nav>
+
 
     <!-- The main content  -->
-    <main>
-      {% block maincontent %}{% endblock %}
-    </main>
+    {% block maincontent %}{% endblock %}
 
     <!-- The footer of the file -->
-    <footer>
-        <p>© 2022 Mohammad M. Ghassemi</p>
-    </footer>
+    <footer class="bottom-footer-style" id="bottom-footer"> © Nitin Polavarapu </footer>
+
+
 
     </article>
-  
+
+
 </body>
 
 </html>
