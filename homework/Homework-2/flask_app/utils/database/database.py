@@ -5,6 +5,10 @@ import csv
 from io import StringIO
 import itertools
 import datetime
+
+#Citation: Learned the correct syntax for parameterized query
+#https://stackoverflow.com/questions/775296/mysql-parameterized-queries
+
 class database:
 
     def __init__(self, purge = False):
@@ -80,10 +84,52 @@ class database:
 
 
     def createTables(self, purge=False, data_path = 'flask_app/database/'):
+        
+        #Feedback Table
+        with open('flask_app/database/create_tables/feedback.sql','r') as file:
+            query_statement = file.read()
+            self.query(query=query_statement)
+        
+        
+
+
+        #Institution Table
+        with open('flask_app/database/create_tables/institutions.sql','r') as file:
+            query_statement = file.read()
+            self.query(query=query_statement)
+
+        with open('flask_app/database/initial_data/institutions.csv','r') as file:
+            content = list(csv.reader(file))
+            table_columns = content[0]
+            table_parameters = content[1:]
+            self.insertRows(table='institutions',columns=table_columns,parameters=table_parameters)
+
+
+
+        #Position Table
+        with open('flask_app/database/create_tables/positions.sql','r') as file:
+            query_statement = file.read()
+            self.query(query=query_statement)
+
+        #Experiences Table
+        with open('flask_app/database/create_tables/experiences.sql','r') as file:
+            query_statement = file.read()
+            self.query(query=query_statement)       
+
+        #Skills Table
+        with open('flask_app/database/create_tables/skills.sql','r') as file:
+            query_statement = file.read()
+            self.query(query=query_statement)       
+
         print('I create and populate database tables.')
 
 
     def insertRows(self, table='table', columns=['x','y'], parameters=[['v11','v12'],['v21','v22']]):
+
+        if table == 'institutions':
+            for parameter in parameters:
+                self.query(query="INSERT INTO `institutions` (`type`,`name`,`department`,`address`,`city`,`state`,`zip`) VALUES (%s,%s,%s,%s,%s,%s,%s)",parameters=parameter)
+            print(self.query("SELECT COUNT(*) FROM `institutions` "))
         print('I insert things into the database.')
 
 

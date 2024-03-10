@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS `institutions` (
 `address`        varchar(100)  DEFAULT NULL            	COMMENT 'The address of the institution',
 `city`           varchar(100)  DEFAULT NULL            	COMMENT 'The city of the institution.',
 `state`          varchar(100)  DEFAULT NULL            	COMMENT 'The state of the institution.',
-`zip`            varchar(10)   DEFAULT NULL            	COMMENT 'The zip of teh insititution',  
+`zip`            varchar(10)   DEFAULT NULL            	COMMENT 'The zip of the insititution',  
 PRIMARY KEY  (`inst_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT="Insititutions I am affiliated with";
