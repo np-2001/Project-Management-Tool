@@ -1,0 +1,14 @@
+{% extends 'shared/layout.html' %}
+{% block maincontent %}
+
+<div class="Feedback-container">
+    <h1 id="Feedback-header"> Thanks for your feedback - here's what others had to say: </h1>
+
+    {% for comment_id, comment in user_feedback.items() %}
+        <ul class="feedback-list">
+            <li> {{ comment['name']}} said {{comment['comment']}}</li>
+        </ul>
+        
+    {% endfor %}
+</div>
+{% endblock %}

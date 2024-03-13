@@ -5,15 +5,94 @@
       <!-- For each institution - generate a row --> 
       {% for inst_id, inst in resume_data.items() %}
       <!-- Do something... -->
-      <h1>{{ inst['name']}} </h1>
-        {% if inst['positions'] != {} %}
-          {% for pos_id, pos in inst['positions'].items() %}
-          <!-- Do something else... -->
-          <h2>{{ pos['title']}} </h2>
-          {% endfor %}
-        {% endif %}
+      <div class="resume-content">
+        <div class="item">
 
-      <hr>
+        
+          <div class="institution">
+            <div class="left">
+              <h1 id="institution_name">{{ inst['name']}} </h1>
+            </div>
+            <div class="right">
+              {% if inst['department'] != None %}
+                <p class="institution_info"> {{ inst['department']}} </p>
+              {% endif %}
+              {% if inst['address'] != None %}
+                <p> {{ inst['address']}} </p>
+              {% endif %}
+              {% if inst['city'] != None %}
+                <p> {{ inst['city']}} </p>
+              {% endif %}
+              {% if inst['state'] != None %}
+                <p> {{ inst['state']}} </p>
+              {% endif %}
+              {% if inst['zip'] != None %}
+                <p> {{ inst['zip']}} </p>
+              {% endif %}
+            </div>
+            
+            
+          </div>
+          
+            {% if inst['positions'] != {} %}
+              {% for pos_id, pos in inst['positions'].items() %}
+                <div class="position-content">
+                  <div class="institution">
+                    <div class="left">
+                      <h2> {{ pos['title']}} </h2>
+                    </div>
+                    <div class="right">
+                      <p> {{ pos['start_date']}} </p>
+                      {% if pos['end_date'] != None %}
+                        <p> {{ pos['end_date']}} </p>
+                      {% else %}
+                      <p> - </p>
+                      <p>  Present </p>
+                      {% endif %}
+                    </div>
+                  </div>
+                  
+                  <div class="responsibilities"> {{ pos['responsibilities']}} </div>
+
+
+                </div>
+                {% if pos['experiences'] != {} %}
+                  
+                  <ul class="experience-content">
+                    {% for exp_id, exp in pos['experiences'].items() %}
+                      {% if exp['hyperlink'] != None %}
+                      <li> <a href="{{ exp['hyperlink'] }}" > {{ exp['name'] }}: {{ exp['description'] }} </a>  </li>
+                      {% else %}
+                        <li> {{ exp['name'] }}: {{ exp['description'] }}  </li>
+                      {% endif %}
+                      {% if exp['skills'] != {} %}
+
+                        {% for skill_id, skill in exp['skills'].items()  %}
+                          <ul class="skill-content">
+                            <li>Skills: {{ skill['name'] }}  </li>
+                          </ul>
+                          
+
+                        {% endfor %}
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+
+
+
+                    
+                  
+                {% endif %}
+
+
+
+              {% endfor %}
+            {% endif %}
+
+          <hr>
+      </div>
+    </div>
+
       {% endfor %}
 
 

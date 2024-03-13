@@ -7,9 +7,14 @@
   <title>Nitin Polavarapu's personal page</title>
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/header.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/navbar.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/layout.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/footer.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/main.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='piano/css/piano.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='resume/css/resume.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='feedback/css/feedback.css') }}">
+
+
 
  
 
@@ -17,7 +22,9 @@
   {% block extracss %}{% endblock %}
   <script src="{{ url_for('static', filename='main/js/main.js') }}" defer></script>
   <script src="{{ url_for('static', filename='main/js/navbar.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='main/js/feedback.js') }}" defer></script>
   <script src="{{ url_for('static', filename='piano/js/piano.js') }}" defer></script>
+
 
 
   {% block extrajs %}{% endblock %}
@@ -50,9 +57,9 @@
       <div id="menu-overlay" class="menu-overlay-style" >
           <nav>
               <ul id="menu_nav">
-                  <li class="menuitem"><a class="link-style link-structure" href="home.html">Home</a></li>
-                  <li class="menuitem"><a class="link-style link-structure" href="projects.html">Projects</a></li>
-                  <li class="menuitem"><a class="link-style link-structure" href="static/main/resume/Nitin_2024_Resume.pdf">Resume</a></li>
+                  <li class="menuitem"><a class="link-style link-structure" href="/home">Home</a></li>
+                  <li class="menuitem"><a class="link-style link-structure" href="/projects">Projects</a></li>
+                  <li class="menuitem"><a class="link-style link-structure" href="/resume">Resume</a></li>
                   <li class="menuitem"> <a class="link-style link-structure" href="https://www.linkedin.com/in/nitin-polavarapu/">LinkedIn</a> </li>
               </ul>
               
@@ -61,11 +68,21 @@
 
   </nav>
 
-
     <!-- The main content  -->
-    {% block maincontent %}{% endblock %}
+    <main class="{{ class_name }}">
+      <form action="/processfeedback" method="post" id="Feedback-Form-Invisible"> 
+          <input class="form-input name-email" type="text" placeholder="name" name="name">
+          <input class="form-input name-email" type="text" placeholder="email" name="email">
+          <input class="form-input feedback" type="text" placeholder="feedback" name="feedback">
+          <button type="submit" class="form-input" id="submit"> Submit </button>
+      </form>
+      <button id="Feedback"> Feedback</button>
+      {% block maincontent %}{% endblock %}
+    </main>
+    
 
     <!-- The footer of the file -->
+
     <footer class="bottom-footer-style" id="bottom-footer"> © Nitin Polavarapu </footer>
 
 

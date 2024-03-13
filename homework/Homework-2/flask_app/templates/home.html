@@ -1,38 +1,37 @@
 {% extends 'shared/layout.html' %}
 
 {% block maincontent %}
-<main class="Main-Text">
 
-  <div class="about">
-    <!-- Picture of me -->
 
-    <div class="personal-photo">
-        <img id="personal-pic" src="{{ url_for('static', filename='main/images/myimage.jpeg') }}" alt="My Image" loading="lazy">
-    </div>
+<div class="about">
+  <!-- Picture of me -->
 
-    <!-- description of me -->
-
-    <div class="personal-description">
-        
-        <p> <span id="name"> Nitin Polavarapu</span>  is a undergraduate student from Okemos MI, who is currently studying at Michigan State University. At Michigan State, he is studying for a Bachelor's of Computer Science and is currently in the bs/ms program which will allow him to also obtain a Masters of Computer Science. He plans to graduate in December 2024 with a Bachelors degree, and then in December 2025 with a Masters degree. </p>
-        <br>
-        <p> Regarding his current course work, he is currently taking Web Application Architecture and Development, Database Systems, and Information Management and the Cloud </p>
-        <br> 
-        <p> In terms of work experience, Nitin is currently has 1+ years of experience as a undergraduate teaching assistant for CSE 232, and also 2+ years of experience at Jackson National where he works for the cloud department using technologies such as Azure, Terraform, and Powershell.</p>
-        <br>
-        <p> When it comes to his hobbies, Nitin is a big fan of Basketball and Football (Lions winning next year!!!). Along with that he is a avid biker and one-wheel rider.   </p>
-    </div>
+  <div class="personal-photo">
+      <img id="personal-pic" src="{{ url_for('static', filename='main/images/myimage.jpeg') }}" alt="My Image" loading="lazy">
   </div>
 
+  <!-- description of me -->
 
-
-  <!-- Fun Fact -->
-
-  <div class="fun-fact">
-    <h1>Fun fact about me: </h1>
-    <p> I was once studying chemical engineering</p>
+  <div class="personal-description">
+      
+      <p> <span id="name"> Nitin Polavarapu</span>  is a undergraduate student from Okemos MI, who is currently studying at Michigan State University. At Michigan State, he is studying for a Bachelor's of Computer Science and is currently in the bs/ms program which will allow him to also obtain a Masters of Computer Science. He plans to graduate in December 2024 with a Bachelors degree, and then in December 2025 with a Masters degree. </p>
+      <br>
+      <p> Regarding his current course work, he is currently taking Web Application Architecture and Development, Database Systems, and Information Management and the Cloud </p>
+      <br> 
+      <p> In terms of work experience, Nitin is currently has 1+ years of experience as a undergraduate teaching assistant for CSE 232, and also 2+ years of experience at Jackson National where he works for the cloud department using technologies such as Azure, Terraform, and Powershell.</p>
+      <br>
+      <p> When it comes to his hobbies, Nitin is a big fan of Basketball and Football (Lions winning next year!!!). Along with that he is a avid biker and one-wheel rider.   </p>
   </div>
-</main>
+</div>
+
+
+
+<!-- Fun Fact -->
+
+<div class="fun-fact">
+  <h1>Fun fact about me: </h1>
+  <p> I was once studying chemical engineering</p>
+</div>
 
 {% endblock %}
 

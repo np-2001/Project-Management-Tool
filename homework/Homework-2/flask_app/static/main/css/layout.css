@@ -1,0 +1,58 @@
+#Feedback {
+    position: fixed; 
+    top: 25%;       
+    right: 0%;
+    transform: rotate(-90deg);
+    color: #FFFFFF;
+    background-color: #000;
+   
+}
+
+#Feedback-Form-Invisible {
+
+    display: none;
+
+}
+
+#Feedback-Form-Visible {
+    height: 60vh;
+    width: 30vw;
+    top: 30%;
+    left: 0%;
+    right: 0%;
+    margin: auto;
+    position: fixed;
+    background-color: #000;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.form-input {
+    text-align: center;
+    align-self: center;
+    margin-top: 5%;
+    border-radius: 5%;
+
+}
+
+.name-email {
+    width: 50%;
+    height: 10%;
+}
+
+.feedback {
+    width: 50%;
+    height: 25%;
+}
+
+#submit {
+    width: 50%;
+    height: 15%;
+    margin-bottom: 5%;
+    background-color:#ADD8E6;
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+}

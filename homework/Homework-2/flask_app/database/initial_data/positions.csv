@@ -1,3 +1,3 @@
-"inst_id","title","responsibilities","start_date","end_date"
-"1","Undergraduate Learning Assistant","Hosts weekly labs, grade students, assists students in helproom","2023-01-01",NULL
-"2","JET SSA","Participated in rotational program consiting of software development,information security, and cloud engineering","2022-09-01",NULL
+"position_id","inst_id","title","responsibilities","start_date","end_date"
+"1","1","Undergraduate Learning Assistant","Hosts weekly labs, grade students, assists students in helproom","2023-01-01",NULL
+"2","2","JET SSA","Participated in rotational program consiting of software development,information security, and cloud engineering","2022-09-01",NULL
