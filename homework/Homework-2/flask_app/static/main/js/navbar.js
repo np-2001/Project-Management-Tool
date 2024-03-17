@@ -9,7 +9,7 @@ let appear = false;
 
 // Handles clicking menu bar
 DisplayMenu = function () {
-    if (appear == false) {
+    if (appear === false) {
         menu.setAttribute("id","menu-appear");
         appear = true;
     } else {

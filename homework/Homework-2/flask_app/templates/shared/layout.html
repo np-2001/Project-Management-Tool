@@ -1,10 +1,10 @@
-<!-- FILL ME IN WITH CODE FOR YOUR PAGE LAYOUT -->
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nitin Polavarapu's personal page</title>
+  <!-- Css imports -->
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/header.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/navbar.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/layout.css') }}">
@@ -20,10 +20,7 @@
 
   <link rel="shortcut icon" href="{{ url_for('static', filename='main/images/favicon.ico') }}">
   {% block extracss %}{% endblock %}
-  <script src="{{ url_for('static', filename='main/js/main.js') }}" defer></script>
-  <script src="{{ url_for('static', filename='main/js/navbar.js') }}" defer></script>
-  <script src="{{ url_for('static', filename='main/js/feedback.js') }}" defer></script>
-  <script src="{{ url_for('static', filename='piano/js/piano.js') }}" defer></script>
+
 
 
 
@@ -70,13 +67,13 @@
 
     <!-- The main content  -->
     <main class="{{ class_name }}">
-      <form action="/processfeedback" method="post" id="Feedback-Form-Invisible"> 
-          <input class="form-input name-email" type="text" placeholder="name" name="name">
-          <input class="form-input name-email" type="text" placeholder="email" name="email">
-          <input class="form-input feedback" type="text" placeholder="feedback" name="feedback">
-          <button type="submit" class="form-input" id="submit"> Submit </button>
+      <form action="/processfeedback" method="post" id="Feedback-Form-Invisible" enctype="application/x-www-form-urlencoded"> 
+          <input class="form-input name-email" type="text" placeholder="name" name="name" title="Name of user">
+          <input class="form-input name-email" type="text" placeholder="email" name="email" title="Email of user">
+          <input class="form-input feedback" type="text" placeholder="feedback" name="feedback" title="Feedback of user">
+          <button type="submit" class="form-input submit-color" id="submit"> Submit </button>
       </form>
-      <button id="Feedback"> Feedback</button>
+      <button id="Feedback" class="Feedback-Button"> Feedback</button>
       {% block maincontent %}{% endblock %}
     </main>
     
@@ -89,7 +86,10 @@
 
     </article>
 
-
+    <script src="{{ url_for('static', filename='main/js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='main/js/navbar.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='main/js/feedback.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='piano/js/piano.js') }}" defer></script>
 </body>
 
 </html>

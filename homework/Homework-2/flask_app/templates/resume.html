@@ -4,11 +4,11 @@
 
       <!-- For each institution - generate a row --> 
       {% for inst_id, inst in resume_data.items() %}
-      <!-- Do something... -->
+      <!-- Content of resume -->
       <div class="resume-content">
         <div class="item">
 
-        
+        <!-- Institution Content -->
           <div class="institution">
             <div class="left">
               <h1 id="institution_name">{{ inst['name']}} </h1>
@@ -36,10 +36,11 @@
           
             {% if inst['positions'] != {} %}
               {% for pos_id, pos in inst['positions'].items() %}
+              <!-- Position Content -->
                 <div class="position-content">
                   <div class="institution">
                     <div class="left">
-                      <h2> {{ pos['title']}} </h2>
+                      <h2 id="job-title"> {{ pos['title']}} </h2>
                     </div>
                     <div class="right">
                       <p> {{ pos['start_date']}} </p>
@@ -57,7 +58,7 @@
 
                 </div>
                 {% if pos['experiences'] != {} %}
-                  
+                  <!-- Experiences Content -->
                   <ul class="experience-content">
                     {% for exp_id, exp in pos['experiences'].items() %}
                       {% if exp['hyperlink'] != None %}
@@ -68,6 +69,7 @@
                       {% if exp['skills'] != {} %}
 
                         {% for skill_id, skill in exp['skills'].items()  %}
+                        <!-- Skill Content -->
                           <ul class="skill-content">
                             <li>Skills: {{ skill['name'] }}  </li>
                           </ul>

@@ -151,6 +151,14 @@ class database:
 
 
     def insertRows(self, table='table', columns=['x','y'], parameters=[['v11','v12'],['v21','v22']]):
+        #columns_str = ", ".join(f"`{column}`" for column in columns)
+        column_str = ""
+        for i in range(len(columns)):
+            if i != len(columns)-1:
+                column_str += "{},".format(columns[i])
+            else:
+                column_str += "{}".format(columns[i])
+
 
         for parameter in parameters:
             if parameter != []:
@@ -159,31 +167,14 @@ class database:
                         parameter[column] = None
 
                 if table == 'institutions':
-                    self.query(query="INSERT INTO `institutions` (`inst_id`,`type`,`name`,`department`,`address`,`city`,`state`,`zip`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",parameters=parameter)
+                    self.query(query="INSERT INTO `institutions` ({}) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)".format(column_str),parameters=parameter)
                 elif table == 'positions':
-                    self.query(query="INSERT INTO `positions` (`position_id`,`inst_id`,`title`,`responsibilities`,`start_date`,`end_date`) VALUES (%s,%s,%s,%s,%s,%s)",parameters=parameter)
+                    self.query(query="INSERT INTO `positions` ({}) VALUES (%s,%s,%s,%s,%s,%s)".format(column_str),parameters=parameter)
                 elif table == 'experiences':
-                    self.query(query="INSERT INTO `experiences` (`experience_id`,`position_id`,`name`,`description`,`hyperlink`,`start_date`,`end_date`) VALUES (%s,%s,%s,%s,%s,%s,%s)",parameters=parameter)
+                    self.query(query="INSERT INTO `experiences` ({}) VALUES (%s,%s,%s,%s,%s,%s,%s)".format(column_str),parameters=parameter)
                 elif table == 'skills':
-                    self.query(query="INSERT INTO `skills` (`skill_id`,`experience_id`,`name`,`skill_level`) VALUES (%s,%s,%s,%s)",parameters=parameter)
-                elif table == 'feedback':
-                    #Will come back to this
-                    pass
-        if table == 'institutions':
-            #print(self.query(query="SELECT * FROM institutions;"))
-            pass
-        elif table == 'positions':
-            #print(self.query(query="SELECT * FROM positions;"))
-            pass
-        elif table == 'experiences':
-            #print(self.query(query="SELECT * FROM experiences;"))
-            pass
-        elif table == 'skills':
-            #print(self.query(query="SELECT * FROM skills;"))
-            pass            
-        elif table == 'feedback':
-            #Will come back to this
-            pass
+                    self.query(query="INSERT INTO `skills` ({}) VALUES (%s,%s,%s,%s)".format(column_str),parameters=parameter)
+
         print('I insert things into the database.')
 
 

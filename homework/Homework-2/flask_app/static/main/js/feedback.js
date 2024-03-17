@@ -5,8 +5,9 @@ const feedback = document.querySelector("#Feedback-Form-Invisible");
 let appear_form = false;
 // Handles clicking menu bar
 DisplayForm = function () {
-    if (appear_form == false) {
+    if (appear_form === false) {
         feedback.setAttribute("id","Feedback-Form-Visible");
+        feedback.setAttribute("class","Feedback-Form-Visible-color");
         appear_form= true;
     } else {
         appear_form = false;

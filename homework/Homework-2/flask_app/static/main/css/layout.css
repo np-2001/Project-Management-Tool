@@ -3,9 +3,12 @@
     top: 25%;       
     right: 0%;
     transform: rotate(-90deg);
+
+   
+}
+.Feedback-Button {
     color: #FFFFFF;
     background-color: #000;
-   
 }
 
 #Feedback-Form-Invisible {
@@ -22,11 +25,15 @@
     right: 0%;
     margin: auto;
     position: fixed;
-    background-color: #000;
+
     z-index: 5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.Feedback-Form-Visible-color {
+    background-color: #000;
 }
 
 
@@ -52,7 +59,12 @@
     width: 50%;
     height: 15%;
     margin-bottom: 5%;
+
+}
+
+.submit-color {
     background-color:#ADD8E6;
     border-color: #FFFFFF;
     color: #FFFFFF;
+
 }
