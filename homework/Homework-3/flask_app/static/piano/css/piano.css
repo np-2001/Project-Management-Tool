@@ -1,139 +1,185 @@
-
-
-.imageWrapper{
-  position: relative;
-  height: 500px;
-  width: 550px;
-  left: 0;
-  right: 0;
-  margin-left:auto;
-  margin-right:auto;
+/* Styling for html page */
+#page-html {
+    height: 100%;
+    width: 100%;
 }
 
-.imageWrapper > .bgimg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 0;
-  opacity: 1ww;
-  border-radius: 69px 69px 0px 0px;
-  transition:  opacity 3s ease-out;
+/* Styling for body */
+#page-body {
+    height: 100%;
 }
 
-.imageWrapper > .bkgdc {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 1;
-  opacity: 1;
-  border-radius: 69px 69px 0px 0px;
-  background-color: #24292f;
-  transition:  opacity 3s ease-out;
+/* Styling for piano section */
+.Piano-Project {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
-.imageWrapper > p {
-  font-family: Trattatello, fantasy;
-  font-size: 32px; 
-  position: relative;
-  color: white;
-  height: 100%;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  z-index: 1;
-  text-align: center;
-  top: 50px;
+/* Styling for piano */
+.piano {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: flex-end;
+    width: 50%; 
+    height: 50%; 
+    border-radius: 5% 5% 0 0;
+
+    padding: 3%;
+    margin-bottom: 10%;
+    opacity: 100%;
+    
+
+
 }
 
+.piano-style {
+    background-color: #636363;
+}
 
+/* Styling for text in piano */
+.piano-text {
+    
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 2vw;
+}
+
+/* Structure for text in piano */
+.piano-text-structure {
+    margin-bottom: 10%;
+
+}
+
+/* Styling for monster image and text container */
+.image-and-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center; 
+    position: absolute;
+    width: 55%; 
+    height: 50%;
+    top: 23%;
+    opacity: 0%; /* So my old one image does not appear */
+    margin-top: -5%;
+    transition: opacity 2s;
+
+
+}
+
+/* Styling for old-one */
+.old-one {
+    position: relative;
+    
+    width: 100%; 
+    height: 100%; 
+    border-radius: 10% 10% 0 0;
+
+}
+
+/* Styling for text in monster image */
+.Old-one-text {
+    color:#fff;
+
+    
+}
+
+/* Structure of old one text */
+.Old-one-text-structure {
+    position: absolute;
+    top: 10%
+
+}
+
+/* Styling for container that has keys */
 .keys {
-  position: absolute;
-  display: block;
-  width: 500px;
-  height: 300px;
-  cursor: none;
-  padding: 0px;
-  opacity: 1;
-  bottom: 0px;
-  z-index: 100;
-  left: 0;
-  right: 0;
-  margin-left:auto;
-  margin-right:auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end; 
+    justify-content: center;
+    width: 100%; 
+    height: 80%; 
+    z-index: 2;
 
 }
 
-.key {
-  position: relative;
-  border: 4px solid black;
-  border-radius: .5rem;
-  transition: all .1s ease;
-  display: block;
-  box-sizing: border-box;
-  z-index: 2;
+/* Styling for the text at the top of page */
+.poem {
+    text-align: center;
+    text-justify: inter-word;
+
+    margin-bottom: 10%;
+
 }
 
-.key:not(.sharp) {
-  float: left;
-  width: 10%;
-  height: 100%;
-  background: rgba(255, 255, 255, .8);    
+/* Styling for both key types */
+.white-key, .black-key {
+    border-radius: 5% 5% 5% 5%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+    align-items: flex-end;
+
+    flex-grow: 1;
+
+
 }
 
-.key.sharp {
-  position: absolute;
-  width: 6%;
-  height: 60%;
-  background: #000;
-  color: #eee;
-  top: 0;
-  z-index: 3;
+.white-key-style, .black-key-style {
+    color: #636363;
+
 }
 
-.key[data-key="87"] {
-  left: 7%;
+/* Styling for just white key */
+.white-key {
+    
+    width: 8%; 
+    height: 100%; 
+    z-index: 0; 
+
+
+
+
 }
 
-.key[data-key="69"] {
-  left: 17%;
+.white-key-style {
+    border: 0.25rem solid #ccc; 
+    background-color: #fff; 
+
 }
 
-.key[data-key="84"]  {
-  left: 37%;
+/* Styling for just black key */
+.black-key {
+    
+    
+    width: 7%;
+    height: 56%;
+    top: -45%;
+    z-index: 1; 
+    margin-left: -4%;
+    margin-right: -4%;
+
 }
 
-.key[data-key="89"] {
-  left: 47%;
+.black-key-style {
+    background-color: #000; 
+
 }
 
-.key[data-key="85"] {
-  left: 57%;    
-}
+/* Styling for letters in keys */
+.letter { 
+    opacity: 0%;
+} 
 
-.key[data-key="79"] {
-  left: 77%;    
-}
-
-.key[data-key="80"] {
-  left: 87%;    
-}
-
-.playing {
-  transform: scale(.95);
-  box-shadow: 0 0 1rem;
-}
-
-.hints {
-  display: block;
-  width: 100%;
-  opacity: 0;
-  position: absolute;
-  bottom: 7px;
-  transition: opacity .3s ease-out;
-  font-size: 20px;
-  text-align: center;
-}
-
-.keys:hover .hints {
-  opacity: 1;
+/* Styling for black key letters */
+#black {
+    color: #FFF;
 }

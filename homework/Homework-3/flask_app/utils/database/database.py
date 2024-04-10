@@ -91,35 +91,134 @@ class database:
                 cols = params[0]; params = params[1:] 
                 self.insertRows(table = table,  columns = cols, parameters = params)
             except:
+                print(table)
                 print('no initial data')
 
+
     def insertRows(self, table='table', columns=['x','y'], parameters=[['v11','v12'],['v21','v22']]):
+        #columns_str = ", ".join(f"`{column}`" for column in columns)
+        column_str = ""
+        for i in range(len(columns)):
+            if i != len(columns)-1:
+                column_str += "{},".format(columns[i])
+            else:
+                column_str += "{}".format(columns[i])
+
+
+        for parameter in parameters:
+            if parameter != []:
+                for column in range(len(parameter)):
+                    if parameter[column] == 'NULL':
+                        parameter[column] = None
+
+                if table == 'institutions':
+                    self.query(query="INSERT INTO `institutions` ({}) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)".format(column_str),parameters=parameter)
+                elif table == 'positions':
+                    self.query(query="INSERT INTO `positions` ({}) VALUES (%s,%s,%s,%s,%s,%s)".format(column_str),parameters=parameter)
+                elif table == 'experiences':
+                    self.query(query="INSERT INTO `experiences` ({}) VALUES (%s,%s,%s,%s,%s,%s,%s)".format(column_str),parameters=parameter)
+                elif table == 'skills':
+                    self.query(query="INSERT INTO `skills` ({}) VALUES (%s,%s,%s,%s)".format(column_str),parameters=parameter)
+                elif table == 'users':
+                    self.query(query="INSERT INTO `users` ({}) VALUES (%s,%s,%s)".format(column_str),parameters=parameter)
+        print('I insert things into the database.')
+
+    
+    def getResumeData(self):
+        # Pulls data from the database to genereate data like this:
+        resume_data = {}
+        institution_data = self.query(query="SELECT * FROM institutions;")
+        for row in institution_data:
+            institution_id      = row["inst_id"]
+            institution_type    = row["type"]
+            name                = row["name"]
+            department          = row["department"]
+            address             = row["address"]
+            city                = row["city"]
+            state               = row["state"]
+            institution_zip     = row["zip"]
+
+
+            institution_dict =  {
+                                'address' : address,
+                                'city': city,      
+                                'state': state,
+                                'type': institution_type,
+                                'zip': institution_zip,
+                                'department': department,
+                                'name': name,
+                                'positions':{}
+                            }
+
+            resume_data[institution_id] = institution_dict
         
-        # Check if there are multiple rows present in the parameters
-        has_multiple_rows = any(isinstance(el, list) for el in parameters)
-        keys, values      = ','.join(columns), ','.join(['%s' for x in columns])
+        #Position
+        position_data = self.query(query="SELECT * FROM positions;")
+        for row in position_data:
+            position_id         = row['position_id']
+            institution_id      = row["inst_id"]
+            title               = row["title"]
+            responsibilities    = row["responsibilities"]
+            start_date          = row["start_date"]
+            end_date            = row["end_date"]
+
+            position_dict = {'end_date':end_date,'responsibilities':responsibilities,'start_date':start_date,'title':title,'experiences':{}}
+
+            resume_data[institution_id]['positions'][position_id] = position_dict
         
-        # Construct the query we will execute to insert the row(s)
-        query = f"""INSERT IGNORE INTO {table} ({keys}) VALUES """
-        if has_multiple_rows:
-            for p in parameters:
-                query += f"""({values}),"""
-            query     = query[:-1] 
-            parameters = list(itertools.chain(*parameters))
-        else:
-            query += f"""({values}) """                      
+        #Experiences
+        experience_data = self.query(query="SELECT * FROM experiences;")
+
+        for row in experience_data:
+            experience_id       = row['experience_id']
+            position_id         = row['position_id']
+            name                = row["name"]
+            description         = row["description"]
+            hyperlink           = row["hyperlink"]
+            start_date          = row["start_date"]
+            end_date            = row["end_date"]
+
+            experience_dict = {"description":description,'end_date':end_date,'start_date':start_date,'hyperlink':hyperlink,'name':name,'skills':{}}
+            print(position_id)
+
+            for institution_id in resume_data:
+                if position_id in resume_data[institution_id]['positions']:
+                    resume_data[institution_id]['positions'][position_id]['experiences'][experience_id] = experience_dict
         
-        insert_id = self.query(query,parameters)[0]['LAST_INSERT_ID()']         
-        return insert_id
+        #Skills
+        skill_data = self.query(query="SELECT * FROM skills;")
+        for row in skill_data:
+            skill_id        = row['skill_id']
+            experience_id   = row['experience_id']
+            name            = row['name']
+            skill_level     = row['skill_level']
+            
+            skill_dict = {'name':name,'skill_level':skill_level}
+            for institution_id in resume_data:
+                for position_id in resume_data[institution_id]['positions']:
+                    if experience_id in resume_data[institution_id]['positions'][position_id]['experiences']:
+                        resume_data[institution_id]['positions'][position_id]['experiences'][experience_id]['skills'][skill_id] = skill_dict
+                    
+
+        return resume_data
+
+
 
 #######################################################################################
 # AUTHENTICATION RELATED
 #######################################################################################
     def createUser(self, email='me@email.com', password='password', role='user'):
+        password = self.onewayEncrypt(string=password)
+        self.insertRows(table='users',columns=['role','email','password'],parameters=[[role,email,password]])
         return {'success': 1}
 
     def authenticate(self, email='me@email.com', password='password'):
-        return {'success': 1}
+        password = self.onewayEncrypt(string=password)
+        count = (self.query(query="SELECT COUNT(*) FROM `users` WHERE email=%s and password=%s",parameters=[email,password])[0]['COUNT(*)'])
+        if int(count) > 0:
+            return {'success': 1}
+        else:
+            return {'success': 0}
 
     def onewayEncrypt(self, string):
         encrypted_string = hashlib.scrypt(string.encode('utf-8'),
@@ -140,5 +239,3 @@ class database:
             message = fernet.decrypt(message).decode()
 
         return message
-
-

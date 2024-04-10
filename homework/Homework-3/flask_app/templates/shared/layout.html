@@ -1,14 +1,29 @@
-<!-- FILL ME IN WITH CODE FOR YOUR PAGE LAYOUT -->
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dr. Ghassemi's personal page</title>
+  <title>Nitin Polavarapu's personal page</title>
+  <!-- Css imports -->
+  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/header.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/navbar.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/layout.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/footer.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/main.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='piano/css/piano.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='resume/css/resume.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='feedback/css/feedback.css') }}">
+
+
+
+ 
+
   <link rel="shortcut icon" href="{{ url_for('static', filename='main/images/favicon.ico') }}">
   {% block extracss %}{% endblock %}
-  <script src="{{ url_for('static', filename='main/js/main.js') }}" defer></script>
+
+
+
+
   {% block extrajs %}{% endblock %}
 </head>
 
@@ -16,48 +31,77 @@
     <article>
     <!-- The header  -->
     <header>
-        <p> The future home of an amazing header </p>
+      <img id="banner" src="{{ url_for('static', filename='main/images/banner.jpg') }}" alt="Banner Image" loading="lazy"> 
     </header>
 
-    <!-- The navigation bar -->
-    <nav>
-      <div>
-      {% if user == 'Unknown' %}  
-      <p>CSE 477 - Homework 3</p>
-      {% else %}
-      <p>Logged in as {{user}}</p>
-      {% endif %}
-      <br>
-      
 
-      <a href="/home">Home</a>
-      <a href="/chat">Chat</a>
-      <a href="/login">Login</a>
-      <a href="/logout">Logout</a>
-    </nav>
+    <!-- The navigation bar -->
+    <nav class="navbar-design navbar-structure">  
+      <ul class="menu-nav-design menu-nav-structure">
+          {% if user == 'Unknown' %}
+          <li id="homework"> CSE 477 - Homework 3</li>
+          {% else %}
+          <li id="homework"> Welcome {{user}} </li>
+          {% endif %}
+          <li class="navitems" id="home"><a class="link-style link-structure" href="/home">Home</a></li>
+          <li class="navitems" id="project"><a class="link-style link-structure" href="/projects">Projects</a></li>
+          <li class="navitems" id="resume"><a class="link-style link-structure" href="/resume">Resume</a></li>
+          {% if user == 'Unknown' %}
+          <li class="navitems"><a class="link-style link-structure" href="/login">Login</a></li>
+          {% else %}
+          <li class="navitems"><a class="link-style link-structure" href="/logout">Logout</a></li>
+          {% endif %}
+
+          <li class="navitems" id="linkedin"><a class="link-style link-structure" href="https://www.linkedin.com/in/nitin-polavarapu/"><img id="LinkedIn" src="{{ url_for('static', filename='main/images/social-linkedin.png') }}" alt="LinkedIn Image" loading="lazy"> </a></li>
+          <li class="navitems" id="menubar"><button type="button" class="MButton"> <img id="MenuImage" src="{{ url_for('static', filename='main/images/menu-bar.png') }}" alt="MenuBar Image" loading="lazy"></button> </li>
+
+
+      </ul>
+
+      <!-- Used when screen is less than 650px -->
+
+      <div id="menu-overlay" class="menu-overlay-style" >
+          <nav>
+              <ul id="menu_nav">
+                  <li class="menuitem"><a class="link-style link-structure" href="/home">Home</a></li>
+                  <li class="menuitem"><a class="link-style link-structure" href="/projects">Projects</a></li>
+                  <li class="menuitem"><a class="link-style link-structure" href="/resume">Resume</a></li>
+                  <li class="menuitem"> <a class="link-style link-structure" href="https://www.linkedin.com/in/nitin-polavarapu/">LinkedIn</a> </li>
+              </ul>
+              
+          </nav>
+      </div>
+
+  </nav>
 
     <!-- The main content  -->
-    <main>
+    <main class="{{ class_name }}">
+      <form action="/processfeedback" method="post" id="Feedback-Form-Invisible" enctype="application/x-www-form-urlencoded"> 
+          <input class="form-input name-email" type="text" placeholder="name" name="name" title="Name of user">
+          <input class="form-input name-email" type="text" placeholder="email" name="email" title="Email of user">
+          <input class="form-input feedback" type="text" placeholder="feedback" name="feedback" title="Feedback of user">
+          <button type="submit" class="form-input submit-color" id="submit"> Submit </button>
+      </form>
+      <button id="Feedback" class="Feedback-Button"> Feedback</button>
       {% block maincontent %}{% endblock %}
     </main>
+    
 
     <!-- The footer of the file -->
-    <footer>
-        <p>© 2022 Mohammad M. Ghassemi</p>
-    </footer>
+
+    <footer class="bottom-footer-style" id="bottom-footer"> © Nitin Polavarapu </footer>
+
+
 
     </article>
-  
+
+    <script src="{{ url_for('static', filename='main/js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='main/js/navbar.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='main/js/feedback.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='piano/js/piano.js') }}" defer></script>
 </body>
 
 </html>
-
-
-
-
-
-
-
 
 
 

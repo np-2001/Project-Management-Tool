@@ -24,22 +24,27 @@ def login_required(func):
     return secure_function
 
 def getUser():
-	return session['email'] if 'email' in session else 'Unknown'
+	return db.reversibleEncrypt('decrypt',session['email']) if 'email' in session else 'Unknown'
 
 @app.route('/login')
 def login():
-	return render_template('login.html')
+	return render_template('login.html',user=getUser())
 
 @app.route('/logout')
 def logout():
 	session.pop('email', default=None)
-	return redirect('/')
+	return redirect('/home')
 
 @app.route('/processlogin', methods = ["POST","GET"])
 def processlogin():
 	form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
-	session['email'] = form_fields['email']
-	return json.dumps({'success':1})
+	status = db.authenticate(email=form_fields['email'],password=form_fields['password'])
+	
+	if (status['success'] == 1):
+		session['email'] = db.reversibleEncrypt('encrypt', form_fields['email']) 
+		return json.dumps({'success':1})
+	else:
+		return json.dumps({'success':0})
 
 
 #######################################################################################
@@ -52,22 +57,60 @@ def chat():
 
 @socketio.on('joined', namespace='/chat')
 def joined(message):
-    join_room('main')
-    emit('status', {'msg': getUser() + ' has entered the room.', 'style': 'width: 100%;color:blue;text-align: right'}, room='main')
+	join_room('main')
+	user = getUser()
+	roles = db.query(query="SELECT role FROM `users` WHERE email = %s",parameters=[user])[0]
+	print(roles)
+	if (roles['role'] == 'owner'):
+		emit('status', {'msg': getUser() + ' has entered the room.', 'style': 'width: 100%;color:blue;text-align: right'}, room='main')
+	else:
+		emit('status', {'msg': getUser() + ' has entered the room.', 'style': 'width: 100%;color:grey;text-align: left'}, room='main')
 
 
 #######################################################################################
 # OTHER
-#######################################################################################
 @app.route('/')
 def root():
 	return redirect('/home')
 
 @app.route('/home')
 def home():
-	print(db.query('SELECT * FROM users'))
-	x = random.choice(['I started university when I was a wee lad of 15 years.','I have a pet sparrow.','I write poetry.'])
-	return render_template('home.html', user=getUser(), fun_fact = x)
+	x  = random.choice(['I started university when I was a wee lad of 15 years.','I have a pet sparrow.','I write poetry.'])
+	return render_template('home.html',user=getUser(), class_name = "Main-Text")
+
+
+@app.route('/projects')
+def projects():
+	return render_template('projects.html',user=getUser(),class_name = "Main-Text")
+
+
+@app.route('/piano')
+def piano():
+	return render_template('piano.html',user=getUser(),class_name = "Piano-Project")
+
+@app.route('/resume')
+def resume():
+	resume_data = db.getResumeData()
+	pprint(resume_data)
+	return render_template('resume.html',user=getUser(), resume_data = resume_data)
+
+
+@app.route('/processfeedback',methods=['POST'])
+def feedback():
+	print(request.form.to_dict())
+	name = request.form.get("name")
+	email = request.form.get("email")
+	comment = request.form.get("feedback")
+	db.query(query="INSERT INTO `feedback` (`name`,`email`,`comment`) VALUES (%s,%s,%s)",parameters=[name,email,comment])
+	feedback_data = db.query(query="SELECT * FROM feedback")
+	input_data = {}
+	for row in feedback_data:
+		comment_id = row["comment_id"]
+		row_name = row["name"]
+		row_email = row["email"]
+		row_comment = row["comment"]
+		input_data[comment_id] = {"name":row_name,"email":row_email,"comment":row_comment}
+	return render_template('processfeedback.html',user=getUser(),user_feedback=input_data)
 
 @app.route("/static/<path:path>")
 def static_dir(path):

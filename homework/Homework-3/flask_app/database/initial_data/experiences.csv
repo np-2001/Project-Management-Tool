@@ -1,0 +1,11 @@
+"experience_id","position_id","name","description","hyperlink","start_date","end_date"
+"1","1","Lab Hours","Held Honors Lab","https://cse232-msu.github.io/CSE232/","2023-01-01",NULL
+"2","1","Piazza Hours","Answered Piazza Questions",NULL,"2023-01-01",NULL
+"3","1","Helproom Hours","Gave one-on-one assistance to students in helproom",NULL,"2023-01-01","2023-12-15"
+"4","2","Software Development Rotation","Developed a user interface for existing application",NULL,"2022-09-01","2022-12-31"
+"5","2","InfoSec Rotation","Developed security scripts and analyzed data",NULL,"2023-01-01","2023-03-15"
+"6","2","Cloud Engineering Rotation","Created and maintained Azure infrastructure",NULL,"2023-03-16",NULL
+
+
+
+
