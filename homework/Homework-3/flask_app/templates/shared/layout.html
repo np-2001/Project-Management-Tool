@@ -46,6 +46,8 @@
           <li class="navitems" id="home"><a class="link-style link-structure" href="/home">Home</a></li>
           <li class="navitems" id="project"><a class="link-style link-structure" href="/projects">Projects</a></li>
           <li class="navitems" id="resume"><a class="link-style link-structure" href="/resume">Resume</a></li>
+          <li class="navitems" id="chat"><a class="link-style link-structure" href="/chat">Chat</a></li>
+
           {% if user == 'Unknown' %}
           <li class="navitems"><a class="link-style link-structure" href="/login">Login</a></li>
           {% else %}
@@ -66,6 +68,7 @@
                   <li class="menuitem"><a class="link-style link-structure" href="/home">Home</a></li>
                   <li class="menuitem"><a class="link-style link-structure" href="/projects">Projects</a></li>
                   <li class="menuitem"><a class="link-style link-structure" href="/resume">Resume</a></li>
+                  <li class="menuitem"><a class="link-style link-structure" href="/chat">Chat</a></li>
                   <li class="menuitem"> <a class="link-style link-structure" href="https://www.linkedin.com/in/nitin-polavarapu/">LinkedIn</a> </li>
               </ul>
               
@@ -99,6 +102,8 @@
     <script src="{{ url_for('static', filename='main/js/navbar.js') }}" defer></script>
     <script src="{{ url_for('static', filename='main/js/feedback.js') }}" defer></script>
     <script src="{{ url_for('static', filename='piano/js/piano.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='main/js/chat.js') }}" defer></script>
+
 </body>
 
 </html>

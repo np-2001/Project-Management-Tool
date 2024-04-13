@@ -57,16 +57,14 @@ def chat():
 
 @socketio.on('joined', namespace='/chat')
 def joined(message):
-	join_room('main')
-	user = getUser()
-	roles = db.query(query="SELECT role FROM `users` WHERE email = %s",parameters=[user])[0]
-	print(roles)
-	if (roles['role'] == 'owner'):
-		emit('status', {'msg': getUser() + ' has entered the room.', 'style': 'width: 100%;color:blue;text-align: right'}, room='main')
-	else:
-		emit('status', {'msg': getUser() + ' has entered the room.', 'style': 'width: 100%;color:grey;text-align: left'}, room='main')
+    join_room('main')
+    emit('status', {'msg': getUser() + ' has entered the room.', 'style': 'width: 100%;color:blue;text-align: right'}, room='main')
 
 
+		
+# @socketio.on('messaged', namespace='/chat')
+# def messaged(message):
+# 	pass
 #######################################################################################
 # OTHER
 @app.route('/')

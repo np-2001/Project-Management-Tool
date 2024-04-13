@@ -37,8 +37,8 @@
             tag.style.cssText = data.style;
             element.appendChild(tag);
             $('#chat').scrollTop($('#chat')[0].scrollHeight);
-
-        });        
+        });   
+        
     });
 </script>
 {% endblock %}
@@ -51,6 +51,9 @@
 </div>
 
 <p class="email">
-<input placeholder="Enter Your Message Here" />
+    <input id="message" placeholder="Enter Your Message Here" />
+    <button id="send-message"> Send </button>
 </p>
+
+<script src="{{ url_for('static', filename='main/js/chat.js') }}" defer></script>
 {% endblock %}
