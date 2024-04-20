@@ -1,0 +1,19 @@
+{% extends 'shared/layout.html' %}
+
+{% block maincontent %}
+
+<div class="BoardCreationForm-Structure BoardCreationForm-design">
+    <div id="board-creation-text"> Board Creation: </div>
+    <label class="Input-label-structure Input-label-design" for="board-name">Board Name:</label>
+    <input class="Nameinput-structure Nameinput-design" type="text" id="board-name"  name="board-name" title="Name of Board" placeholder="Name">
+
+    <label class="Input-label-structure Input-label-design" for="Allowed-Emails">Allowed Emails (Comma-Separated):</label>
+    <input class="Nameinput-structure Nameinput-design" type="text" id="Allowed-Emails"  name="Allowed-Emails" title="Allowed Emails" placeholder="Ex: user@email.com,owner@email.com.....">
+
+    <button class="submit-button-structure submit-button-design" onclick="CreateBoard()" >Submit</button>
+   
+</div>
+
+<script src="{{ url_for('static', filename='board_creation/js/board_creation.js') }}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'shared/layout.html' %}
+
+{% block maincontent %}
+
+<div class="board-structure board-design">
+    <div class="Card-Creation-Structure Card-Creation-Design">
+        <input class="card-name-input-structure card-name-input-design" id="New-Card-Name" type="text" id="card-name"  name="card-name" title="Name of card"> 
+        <input class="card-name-input-structure card-name-input-design" id="New-Card-Body" type="text" id="card-text"  name="card-text" title="Body of card"> 
+        <button class="Card-Creation-Button-Structure Card-Creation-Button-Design" id="Submit-Card">Create Card</button>
+    </div>
+    <div class="ToDo-Structure ToDo-Design">
+        <h1 class="Column-Title"> To Do</h1>
+        <div class="Card-List-Structure Card-List-Design"> 
+            {% for row in board_data["cards"] %}
+                {% if row["card_list"] == "ToDo"%}
+                    <div class="Card-Structure Card-Design"> 
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <button class="add-card-structure add-card-design" id="ToDo" onclick="CreateCard('Todo')">Add Card</button>
+
+    </div>
+
+    <div class="Doing-Structure Doing-Design">
+        <h1 class="Column-Title"> Doing </h1>
+
+        <div class="Card-List-Structure Card-List-Design"> 
+            {% for row in board_data["cards"] %}
+                {% if row["card_list"] == "Doing"%}
+                    <div class="Card-Structure Card-Design"> 
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button class="add-card-structure add-card-design" id="Doing" onclick="CreateCard('Doing')">Add Card</button>
+    </div>
+
+    <div class="Completed-Structure Completed-Design">
+        <h1 class="Column-Title"> Completed </h1>
+        <div class="Card-List-Structure Card-List-Design"> 
+            {% for row in board_data["cards"] %}
+                {% if row["card_list"] == "Completed"%}
+                    <div class="Card-Structure Card-Design"> 
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button class="add-card-structure add-card-design" id="Completed" onclick="CreateCard('Completed')">Add Card</button>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='board_display/js/board_display.js') }}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}

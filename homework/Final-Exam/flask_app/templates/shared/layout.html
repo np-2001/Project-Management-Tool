@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nitin Polavarapu's personal page</title>
+  <!-- Css imports -->
+  <link rel="stylesheet"    href="{{ url_for('static', filename='shared/css/header.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='shared/css/navbar.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='shared/css/footer.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='login/css/login.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='board_creation/css/board_creation.css') }}">
+  <link rel="stylesheet"    href="{{ url_for('static', filename='board_display/css/board_display.css') }}">
+ 
+    <!-- Need to fix this -->
+  <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='shared/images/favicon.ico') }}"> -->
+  {% block extracss %}{% endblock %}
+
+
+
+
+  {% block extrajs %}{% endblock %}
+</head>
+
+<body>
+    <article>
+    <!-- The header  -->
+    <header>
+      <img id="banner" src="{{ url_for('static', filename='shared/images/banner.jpg') }}" alt="Banner Image" loading="lazy"> 
+    </header>
+
+
+    <!-- The navigation bar -->
+    <nav class="navbar-design navbar-structure">  
+        <ul class="menu-nav-design menu-nav-structure">
+            {% if user == 'Unknown' %}
+            <li id="homework"> CSE 477 - Final Exam</li>
+            {% else %}
+            <li id="homework"> Welcome {{user}} </li>
+            {% endif %}
+            {% if user == 'Unknown' %}
+            <li class="navitems"><a class="link-style link-structure" href="/login">Login</a></li>
+            {% else %}
+            <li class="navitems"><a class="link-style link-structure" href="/logout">Logout</a></li>
+            {% endif %}
+        </ul>
+  
+  
+
+    </nav>
+
+    <!-- The main content  -->
+    <main class="{{ class_name }}">
+      {% block maincontent %}{% endblock %}
+    </main>
+    
+
+    <!-- The footer of the file -->
+
+    <footer class="bottom-footer-style" id="bottom-footer"> © Nitin Polavarapu </footer>
+
+
+
+    </article>
+
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{% extends 'shared/layout.html' %}
+<!-- Citation: https://stackoverflow.com/questions/2554149/how-can-i-change-div-content-with-javascript -->
+{% block extrajs %}
+{% endblock %}
+{% block maincontent %}
+{% if user == 'Unknown' %}
+<div class="Login-structure Login-design">
+
+    <input class="login-input-structure login-input-design" type="text" id="email" placeholder="email" name="email" title="Email of user"> 
+    <input class="login-input-structure login-input-design" type="text" id="password" placeholder="password" name="password" title="Password of user"> 
+    <button class="login-button-structure login-button-design" onclick="checkCredentials()">Login</button>
+    <a href="/signup" class="signup-button-structure signup-button-design">Sign Up</a>
+</div>
+{% else %}
+<div class="board-option-structure board-option-design">
+    <div id="board-option-text"> Open a existing board or create a new board?</div>
+    <div class="board-option-buttons">
+        <button class="board-button-structure board-button-design"> Existing Board</button>
+        <button class="board-button-structure board-button-design" onclick="routeToBoardCreation()"> New Board </button>
+    </div>    
+</div>
+{% endif %}
+
+<script src="{{ url_for('static', filename='login/js/login.js') }}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+{% endblock %}

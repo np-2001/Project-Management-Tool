@@ -1,0 +1,85 @@
+/* Navbar Design */
+.navbar-design {
+    background-color: #3b3b3b; 
+
+
+}
+
+/* Navbar Structure  */
+.navbar-structure {
+    margin: 0%;
+    width: 100vw;
+    max-width: 100%;
+    height: 8vh;
+    padding: 0%;
+    margin: 0%;
+
+}
+
+
+/* Styling for list that contains nav bar items*/
+.navbar-design .menu-nav-design {
+   
+    list-style-type: none;
+    color: #FFFFFF;
+    
+    
+     
+}
+
+/* Structure for list that contains nav bar items  */
+.navbar-design .menu-nav-structure {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0%;
+    padding: 0%;
+    width: 100vw;
+    max-width: 100%;
+    height: 8vh;
+
+}
+
+/* Homework 1 text structure */
+#homework {
+    padding-left: 5%;
+    margin-right: auto;
+    margin-left: 1%;
+    flex: 10;
+    
+}
+
+/* Styling for each navbar item  */
+.navitems {
+    margin: 1%;
+    max-width: 100%;
+    flex: 1;
+}
+
+/* Styling for links  */
+.link-style {
+    color: #FFFFFF;
+    text-decoration: none;
+
+
+}
+
+/* Structure of links */
+.link-structure {
+    height: 4vh;
+
+}
+
+/* Allows hovering effect on nav bar links */
+.link:hover {
+    opacity: 0.5; 
+}
+
+
+
+
+
+
+
+

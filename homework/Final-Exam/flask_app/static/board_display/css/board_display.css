@@ -1,0 +1,127 @@
+.board-structure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+    height: 100vh;
+    padding: 2vw;
+    border-radius: 1vw;
+    gap: 2vw;
+    width: 100%;
+    max-width: 90vw;
+    height: 80vh;
+
+}
+
+.board-design {
+    background-color: #3b3b3b;
+}
+
+.Column-Title {
+    color: #fff;
+}
+
+.ToDo-Structure,
+.Doing-Structure,
+.Completed-Structure {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 2%;
+
+}
+
+.ToDo-Design,
+.Doing-Design,
+.Completed-Design {
+    border: solid #fff 0.5em;
+}
+
+.Card-List-Structure {
+    overflow-y: auto;
+    margin: 3%;
+    flex-grow: 1;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Card-List-Design {
+    background-color: aliceblue;
+}
+
+.Card-Structure {
+    padding: 1vw;
+    border-radius: 0.5vw;
+    margin-bottom: 1vw;
+}
+
+.Card-Design {
+    background-color: #fff;
+
+}
+
+.add-card-structure {
+    margin-top: auto; 
+    padding: 0.5vw 1vw;
+    font-size: 1vw;
+    margin: 3%;
+    border-radius: 50vh;
+}
+
+.add-card-design {
+    background-color: #ADD8E6; 
+    color: #FFF; 
+}
+
+.add-card-design:hover {
+    background-color: #203354; 
+}
+
+.Card-Creation-Structure {
+    z-index: 20;
+    
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 40%;
+    height: 50%;
+    justify-content: space-between;
+    border-radius: 0.5vw;
+}
+
+.Card-Creation-Design {
+    background-color: #ADD8E6;
+    border: solid #3b3b3b 0.5em;
+
+}
+
+.Card-Creation-Button-Structure {
+    margin-top: auto; 
+    padding: 0.5vw 1vw;
+    font-size: 1vw;
+    margin: 3%;
+    border-radius: 50vh;
+    
+}
+
+.Card-Creation-Button-Design {
+    background-color: #3b3b3b; 
+    color: #FFF; 
+}
+
+.card-name-input-structure {
+    margin: 3%;
+    border-radius: 2%;
+
+}
+
+.card-name-input-design {
+
+}
+
+#New-Card-Body {
+    flex-grow: 1;
+}
