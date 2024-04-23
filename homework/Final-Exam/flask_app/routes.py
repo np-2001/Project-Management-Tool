@@ -93,7 +93,8 @@ def home():
 @app.route('/board_display/<int:board_id>')
 def board_display(board_id):
     board_data = db.GetBoardData(board_id=board_id)
-    return render_template('board_display.html',user=getUser(), board_data=board_data, class_name = "Main-Text")
+    print(board_data)
+    return render_template('board_display.html',user=getUser(), board_data=board_data, class_name = "Main-Text",board_id=board_id)
 
 @app.route('/chat')
 @login_required
@@ -127,3 +128,73 @@ def add_header(r):
     r.headers["Pragma"] = "no-cache"
     r.headers["Expires"] = "0"
     return r
+
+
+#######################################################################################
+# CARD RELATED
+#######################################################################################
+@app.route('/processCardCreation', methods = ["POST"])
+def processCardCreation():
+    form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
+    
+    name = form_fields["CardName"]
+    body = form_fields["CardBody"]
+    type = form_fields["CardType"]
+    id   = form_fields["BoardId"]
+    
+    db.insertRows(table="cards",columns=['board_id','card_text','card_title','card_list'],parameters=[[id,body,name,type]])
+    card_id = (db.query(query="SELECT MAX(card_id) FROM cards WHERE board_id = %s;",parameters=[id]))[0]["MAX(card_id)"]
+    print(card_id)
+    socketio.emit('card_added', {
+        'card_id': card_id,
+        'card_title': name,
+        'card_text': body,
+        'card_list': type,
+        'board_id': id
+    })
+
+    return json.dumps({'success':1})
+
+
+@app.route('/processCardDeletion', methods = ["POST"])
+def processCardDeletion():
+    form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
+    card_id   = form_fields["CardId"]
+    print("Delete Called")
+    print(card_id)
+    db.query(query="DELETE FROM cards WHERE card_id = %s",parameters=[card_id])
+    print(db.query(query="SELECT * FROM cards"))
+
+    socketio.emit('card_deleted', {
+        'card_id': card_id,
+    })
+    return json.dumps({'success':1})
+
+@app.route('/processCardEdit', methods = ["POST"])
+def processCardEdit():
+    form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
+    card_id   = form_fields["CardId"]
+    card_text = form_fields["CardText"]
+    db.query(query="UPDATE cards SET card_text = %s WHERE card_id = %s",parameters=[card_text,card_id])
+    socketio.emit('card_edited', {
+        'card_id': card_id,
+        'body_content': card_text
+    })
+    return json.dumps({'success':1})
+
+
+@app.route('/processCardMovement', methods = ["POST"])
+def processCardMovement():
+    form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
+    card_id   = form_fields["CardId"]
+    new_column = form_fields["NewColumn"]
+    old_column = db.query(query="SELECT card_list FROM cards WHERE card_id = %s",parameters=[card_id])
+    db.query(query="UPDATE cards SET card_list = %s WHERE card_id = %s",parameters=[new_column,card_id])
+    socketio.emit('card_moved', {
+         'card_id': card_id,
+         'new_column': new_column,
+         'old_column':old_column
+    })
+    return json.dumps({'success':1})
+
+

@@ -1,38 +1,68 @@
 {% extends 'shared/layout.html' %}
-
+<!-- Citation: https://stackoverflow.com/questions/36090767/access-values-from-a-dict-in-a-function-called-in-a-jinja-expression -->
+<!-- Citation: https://www.geeksforgeeks.org/how-to-remove-specific-div-element-by-using-javascript/ -->
 {% block maincontent %}
-
-<div class="board-structure board-design">
-    <div class="Card-Creation-Structure Card-Creation-Design">
+<button class="Chat-Button-Structure Chat-Button-Design"> Chat </button>
+<div class="board-structure board-design" id="Board: {{board_id}}">
+    <div class="invisible" id="Card-Popup">
+        <div class="Card-Creation-Header-Structure Card-Creation-Header-Design">
+            <h1 class="Card-Creation-Title"> New Card </h1>
+            <button class="Close-Card-Creation-Structure Close-Card-Creation-Design" onclick="HideCard()"> X </button>
+        </div>
+        
+        <label class="Card-Creation-Label-Structure Card-Creation-Label-Design" for="New-Card-Name">Card Name:</label>
         <input class="card-name-input-structure card-name-input-design" id="New-Card-Name" type="text" id="card-name"  name="card-name" title="Name of card"> 
-        <input class="card-name-input-structure card-name-input-design" id="New-Card-Body" type="text" id="card-text"  name="card-text" title="Body of card"> 
-        <button class="Card-Creation-Button-Structure Card-Creation-Button-Design" id="Submit-Card">Create Card</button>
+        <label class="Card-Creation-Label-Structure Card-Creation-Label-Design" for="New-Card-Body">Card Text:</label>
+        <textarea class="card-body-textarea-structure card-body-textarea-design" id="New-Card-Body" name="card-text" title="Body of card"></textarea>
+        <button class="Card-Creation-Button-Structure Card-Creation-Button-Design" id="Submit-Card" onclick="SubmitCard('{{board_id}}')">Create Card</button>
     </div>
+
+    <div class="invisible" id="Card-Edit-Popup">
+        <div class="Card-Creation-Header-Structure Card-Creation-Header-Design">
+            <h1 class="Card-Creation-Title"> Edit Card </h1>
+            <button class="Close-Card-Creation-Structure Close-Card-Creation-Design" onclick="HideEditCard()"> X </button>
+        </div>
+        
+        <label class="Card-Creation-Label-Structure Card-Creation-Label-Design" for="New-Card-Body">Edit Card Text:</label>
+        <textarea class="card-body-textarea-structure card-body-textarea-design" id="Edit-Card-Body" name="card-text" title="Body of card"></textarea>
+        
+        <button class="Card-Creation-Button-Structure Card-Creation-Button-Design" id="Submit-Card-Edit" onclick="EditCard()">Edit Card</button>
+    </div>
+
     <div class="ToDo-Structure ToDo-Design">
         <h1 class="Column-Title"> To Do</h1>
-        <div class="Card-List-Structure Card-List-Design"> 
-            {% for row in board_data["cards"] %}
+        <div class="Card-List-Structure Card-List-Design DropColumn" id="ToDoColumn"> 
+            {% for row in board_data['cards'] %}
                 {% if row["card_list"] == "ToDo"%}
-                    <div class="Card-Structure Card-Design"> 
-
+                    <div class="Card-Structure Card-Design" id="{{row.card_id}}" draggable="true"> 
+                        <div class="Card-Title-Structure Card-Title-Design"> {{ row["card_title"] }} </div>
+                        <div class="Card-Body-Structure Card-Body-Design"> {{ row["card_text"] }} </div>
+                        <div class="Card-Button-Container">
+                            <button class="Edit-Button-Card-Structure Edit-Button-Card-Design" onclick="StartEditCard('{{row.card_id}}')"> Edit </button>
+                            <button class="Delete-Button-Card-Structure Delete-Button-Card-Design" onclick="DeleteCard('{{row.card_id}}')"> Delete </button>
+                        </div>
                     </div>
                 {% endif %}
             {% endfor %}
         </div>
 
-        <button class="add-card-structure add-card-design" id="ToDo" onclick="CreateCard('Todo')">Add Card</button>
+        <button class="add-card-structure add-card-design" id="ToDo" onclick="CreateCard('ToDo')">Add Card</button>
 
     </div>
 
     <div class="Doing-Structure Doing-Design">
         <h1 class="Column-Title"> Doing </h1>
-
-        <div class="Card-List-Structure Card-List-Design"> 
+        <div class="Card-List-Structure Card-List-Design DropColumn" id="DoingColumn"> 
             {% for row in board_data["cards"] %}
                 {% if row["card_list"] == "Doing"%}
-                    <div class="Card-Structure Card-Design"> 
-
+                <div class="Card-Structure Card-Design" id="{{row.card_id}}" draggable="true"> 
+                    <div class="Card-Title-Structure Card-Title-Design"> {{ row["card_title"] }} </div>
+                    <div class="Card-Body-Structure Card-Body-Design"> {{ row["card_text"] }} </div>
+                    <div class="Card-Button-Container">
+                        <button class="Edit-Button-Card-Structure Edit-Button-Card-Design" onclick="StartEditCard('{{row.card_id}}')"> Edit </button>
+                        <button class="Delete-Button-Card-Structure Delete-Button-Card-Design" onclick="DeleteCard('{{row.card_id}}')"> Delete </button>
                     </div>
+                </div>
                 {% endif %}
             {% endfor %}
         </div>
@@ -41,12 +71,17 @@
 
     <div class="Completed-Structure Completed-Design">
         <h1 class="Column-Title"> Completed </h1>
-        <div class="Card-List-Structure Card-List-Design"> 
+        <div class="Card-List-Structure Card-List-Design  DropColumn" id="CompletedColumn"> 
             {% for row in board_data["cards"] %}
                 {% if row["card_list"] == "Completed"%}
-                    <div class="Card-Structure Card-Design"> 
-
+                <div class="Card-Structure Card-Design" id="{{row.card_id}}" draggable="true"> 
+                    <div class="Card-Title-Structure Card-Title-Design"> {{ row["card_title"] }} </div>
+                    <div class="Card-Body-Structure Card-Body-Design"> {{ row["card_text"] }} </div>
+                    <div class="Card-Button-Container">
+                        <button class="Edit-Button-Card-Structure Edit-Button-Card-Design" onclick="StartEditCard('{{row.card_id}}')"> Edit </button>
+                        <button class="Delete-Button-Card-Structure Delete-Button-Card-Design" onclick="DeleteCard('{{row.card_id}}')"> Delete </button>
                     </div>
+                </div>
                 {% endif %}
             {% endfor %}
         </div>
@@ -55,4 +90,136 @@
 </div>
 <script src="{{ url_for('static', filename='board_display/js/board_display.js') }}" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket;
+    $(document).ready(function(){
+        
+        socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connect', function() {
+            console.log('Socket.IO connection established');
+        });
+        
+        socket.on('card_edited', function(data) {
+            console.log("edit time");
+            console.log(data.card_id);
+            let card = document.getElementById(data.card_id);
+            let body = card.getElementsByClassName("Card-Body-Structure")[0];
+            body.textContent = data.body_content;
+
+            let editCardBody = document.getElementById('Edit-Card-Body');
+            editCardBody.value = "";
+
+            let popup = document.getElementById('Card-Edit-Popup');
+            popup.className = "invisible";
+
+        });
+
+        socket.on('card_moved', function(data) {
+            console.log("deletion time");
+            console.log(data.card_id);
+            let card = document.getElementById(data.card_id);
+            card.remove();
+            
+            let column;
+            console.log(data.new_column);
+            if (data.new_column == "ToDo") {
+                column = document.getElementById("ToDoColumn");
+            } else if (data.new_column == "Doing") {
+                column = document.getElementById("DoingColumn");
+            } else {
+                column = document.getElementById("CompletedColumn");
+            }
+            
+            column.appendChild(card);
+
+        });
+
+        socket.on('card_deleted', function(data) {
+            console.log("deletion time");
+            console.log(data.card_id);
+            let card = document.getElementById(data.card_id);
+            card.remove();
+
+        });
+        socket.on('card_added', function(data) {
+            console.log("test")
+            var boardId = "Board: " + data.board_id;
+            console.log(boardId)
+            var listName = data.card_list;
+            var cardData = {
+                card_id: data.card_id,
+                card_title: data.card_title,
+                card_text: data.card_text
+            };    
+            
+            //Board
+            let Board = document.getElementById(boardId);
+
+            //Specific Column
+            let column = Board.getElementsByClassName(`${listName}-Structure`)[0]
+            
+            //List of items in column
+            let cardList = column.getElementsByClassName('Card-List-Structure')[0];
+
+            // Create the card 
+            let card = document.createElement('div');
+            card.classList.add('Card-Structure', 'Card-Design');
+            card.draggable = true;
+            card.id = data.card_id;
+            // Create the card title 
+            let cardTitle = document.createElement('div');
+            cardTitle.classList.add('Card-Title-Structure', 'Card-Title-Design');
+            cardTitle.textContent = cardData.card_title;
+            card.appendChild(cardTitle);
+
+            // Create the card body 
+            let cardBody = document.createElement('div');
+            cardBody.classList.add('Card-Body-Structure', 'Card-Body-Design');
+            cardBody.textContent = cardData.card_text;
+            card.appendChild(cardBody);
+
+
+            // Create the card button container
+            let cardButtonContainer = document.createElement('div');
+            cardButtonContainer.classList.add('Card-Button-Container');
+
+            // Create the edit button
+            let editButton = document.createElement('button');
+            editButton.classList.add('Edit-Button-Card-Structure', 'Edit-Button-Card-Design');
+            editButton.textContent = 'Edit';
+            editButton.onclick = function() { StartEditCard(cardData.card_id); };
+            cardButtonContainer.appendChild(editButton);
+
+            // Create the delete button
+            let deleteButton = document.createElement('button');
+            deleteButton.classList.add('Delete-Button-Card-Structure', 'Delete-Button-Card-Design');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function() { DeleteCard(cardData.card_id); };
+            cardButtonContainer.appendChild(deleteButton);
+
+            // Append the button container to the card element
+            card.appendChild(cardButtonContainer);
+            
+            card.addEventListener('drag',dragging);
+            card.addEventListener('dragstart',dragstart);
+            card.addEventListener('dragend',dragend);
+            // Append the card element to the card list
+            cardList.appendChild(card);
+            
+            let CreateCardBody = document.getElementById('New-Card-Body');
+            CreateCardBody.value = "";
+            let CreateCardName = document.getElementById('New-Card-Name');
+            CreateCardName.value = "";
+            
+
+            let popup = document.getElementById('Card-Popup');
+            popup.className = "invisible";
+        });
+        
+
+    });
+</script>
+
 {% endblock %}

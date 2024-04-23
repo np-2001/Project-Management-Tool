@@ -118,7 +118,7 @@ class database:
                 elif table == 'boardgroups':
                     self.query(query="INSERT INTO `boardgroups` ({}) VALUES (%s,%s)".format(column_str),parameters=parameter)
                 elif table == 'cards':
-                    pass
+                    self.query(query="INSERT INTO `cards` ({}) VALUES (%s,%s,%s,%s)".format(column_str),parameters=parameter)
         print('I insert things into the database.')
 
     
@@ -178,7 +178,6 @@ class database:
     
     def GetBoardData(self,board_id):
         board_data = {"id":board_id}
-
         allowed_emails = self.query(query="SELECT user_email FROM boardgroups WHERE board_id = %s;",parameters=[board_id])
 
         #[{'user_email': 'nit@email.com'}, {'user_email': 'np@email.com'}]
@@ -186,5 +185,5 @@ class database:
 
         cards = self.query(query="SELECT * FROM cards WHERE board_id = %s;",parameters=[board_id])
         board_data["cards"] = cards
-        
+        # print(board_data)
         return board_data
