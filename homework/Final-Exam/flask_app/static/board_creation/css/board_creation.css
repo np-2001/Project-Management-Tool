@@ -36,8 +36,6 @@
 
 #board-creation-text {
     color: #FFF; 
-    margin-top: -20%;
-    margin-bottom: 10%;
     font-size: x-large;
 }
 
@@ -45,12 +43,13 @@
 
 .submit-button-structure {
     text-align: center; 
-    padding: 2vh 4vw; 
+    padding: 2% 4%; 
     font-size: 2.5vh; 
 
     border: none; 
     border-radius: 1vh; 
     margin-bottom: -30%;
+    
 }
 
 .submit-button-design {
@@ -61,3 +60,5 @@
 .submit-button-design:hover {
     background-color: #203354; 
 }
+
+

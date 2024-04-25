@@ -3,6 +3,7 @@
 let CardType = '';
 const CreateCardPopup = document.querySelector("#Card-Popup");
 const CreateEditCardPopup = document.querySelector("#Card-Edit-Popup");
+const Chat = document.querySelector("#Chat");
 
 let CurrentEditedCardId = '';
 // const CreateCardButton = document.querySelector("")
@@ -58,9 +59,37 @@ function DeleteCard(card_id) {
 
 }
 
+function JoinChat(board_id) {
+    Chat.setAttribute("class","Card-Creation-Structure Card-Creation-Design");
+    socket.emit('joined', board_id);
+}
+
+function CloseChat(board_id) {
+    Chat.setAttribute("class","invisible");
+    socket.emit('leave',board_id);
+}
+
+function SubmitMessage(board_id) {
+    const message_container = document.querySelector("#message-container");
+    let message = message_container.value;
+    socket.emit('message',board_id,message);
+}
+
 function StartEditCard(card_id) {
     CurrentEditedCardId = card_id;
     CreateEditCardPopup.setAttribute("class","Card-Creation-Structure Card-Creation-Design");
+    let edit_cards = document.querySelectorAll('.Card-Structure');
+    let edit_card;
+    for (let card of edit_cards) {
+        if (card.id == card_id) {
+            edit_card = card;
+            break;
+        }
+    }
+
+    let body = edit_card.getElementsByClassName("Card-Body-Structure")[0];
+    edit_body = document.querySelector('#Edit-Card-Body')
+    edit_body.value = body.innerText;
 
 }
 

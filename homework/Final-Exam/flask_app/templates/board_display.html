@@ -2,7 +2,7 @@
 <!-- Citation: https://stackoverflow.com/questions/36090767/access-values-from-a-dict-in-a-function-called-in-a-jinja-expression -->
 <!-- Citation: https://www.geeksforgeeks.org/how-to-remove-specific-div-element-by-using-javascript/ -->
 {% block maincontent %}
-<button class="Chat-Button-Structure Chat-Button-Design"> Chat </button>
+<button class="Chat-Button-Structure Chat-Button-Design" onclick="JoinChat('{{board_id}}')"> Chat </button>
 <div class="board-structure board-design" id="Board: {{board_id}}">
     <div class="invisible" id="Card-Popup">
         <div class="Card-Creation-Header-Structure Card-Creation-Header-Design">
@@ -27,6 +27,21 @@
         <textarea class="card-body-textarea-structure card-body-textarea-design" id="Edit-Card-Body" name="card-text" title="Body of card"></textarea>
         
         <button class="Card-Creation-Button-Structure Card-Creation-Button-Design" id="Submit-Card-Edit" onclick="EditCard()">Edit Card</button>
+    </div>
+
+    <div class="invisible" id="Chat">
+        <div class="Card-Creation-Header-Structure Card-Creation-Header-Design">
+            <h1 class="Card-Creation-Title"> Chat </h1>
+            <button class="Close-Card-Creation-Structure Close-Card-Creation-Design" onclick="CloseChat('{{board_id}}')"> X </button>
+        </div>
+        
+        <div id='chat-box' contenteditable>    
+        </div>
+        
+        <input id="message-container" placeholder="Enter Your Message Here" />
+
+
+        <button class="Card-Creation-Button-Structure Card-Creation-Button-Design"  onclick="SubmitMessage('{{board_id}}')">Submit message</button>
     </div>
 
     <div class="ToDo-Structure ToDo-Design">
@@ -217,6 +232,20 @@
             let popup = document.getElementById('Card-Popup');
             popup.className = "invisible";
         });
+
+        socket.on('status', function(data) { 
+            console.log("test")
+            console.log(data)
+            let tag  = document.createElement("p");
+            let text = document.createTextNode(data.msg);
+            let element = document.getElementById("chat-box");
+            tag.appendChild(text);
+            tag.style.cssText = data.style;
+            element.appendChild(tag);
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+
+        });  
+
         
 
     });

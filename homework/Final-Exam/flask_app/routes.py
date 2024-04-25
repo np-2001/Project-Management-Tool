@@ -34,11 +34,18 @@ def login():
 @app.route('/board_creation')
 @login_required
 def board_creation():
-      return render_template('board_creation.html',user=getUser(),class_name = "Main-Text")
+    return render_template('board_creation.html',user=getUser(),class_name = "Main-Text")
+
+@app.route('/board_view')
+@login_required
+def board_view():
+    user_boards = db.GetUserBoards(user_email=getUser())
+    print(user_boards)
+    return render_template('board_view.html',user=getUser(),class_name = "Main-Text",user_boards=user_boards,allowed="True")
 
 @app.route('/signup')
 def signup():
-      return render_template('signup.html',user=getUser(),class_name = "Main-Text")
+    return render_template('signup.html',user=getUser(),class_name = "Main-Text")
 
 @app.route('/logout')
 def logout():
@@ -61,10 +68,13 @@ def processsignup():
     form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
     email = form_fields['email']
     password = form_fields['password']
-
-    db.createUser(email=email,password=password)
-    return json.dumps({'success':1})
-
+    x = db.query(query="SELECT COUNT(*) FROM users WHERE email = %s",parameters=[email])
+    print(x)
+    if (x[0]["COUNT(*)"] == 0):
+        db.createUser(email=email,password=password)
+        return json.dumps({'success':1})
+    else:
+        return json.dumps({'success':2})
 @app.route('/processBoardCreation', methods = ["POST"])
 def processBoardCreation():
     form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
@@ -91,23 +101,40 @@ def home():
     return render_template('home.html',user=getUser(), class_name = "Main-Text")
 
 @app.route('/board_display/<int:board_id>')
+@login_required
 def board_display(board_id):
     board_data = db.GetBoardData(board_id=board_id)
     print(board_data)
-    return render_template('board_display.html',user=getUser(), board_data=board_data, class_name = "Main-Text",board_id=board_id)
-
+    count = db.query(query="SELECT COUNT(*) FROM boardgroups WHERE board_id = %s and user_email = %s",parameters=[board_id,getUser()])
+    if (count[0]["COUNT(*)"] != 0):
+        return render_template('board_display.html',user=getUser(), board_data=board_data, class_name = "Main-Text",board_id=board_id)
+    else:
+        return render_template('board_view.html',user=getUser(),class_name = "Main-Text",allowed="False")
 @app.route('/chat')
 @login_required
 def chat():
     return render_template('chat.html', user=getUser())
 
-@socketio.on('joined', namespace='/chat')
+@socketio.on('joined')
 @login_required
-def joined(message):
-    join_room('main')
-    emit('status', {'msg': getUser() + ' has entered the room.', 'style': 'width: 100%;color:blue;text-align: right'}, room='main')
+def joined(board_id):
+    print('Received joined event with board_id:', board_id)
+    join_room(str(board_id))
+    print("test")
+    emit('status', {'msg': getUser() + ' has entered the room.', 'style': 'width: 100%;color:blue;text-align: right'}, room=str(board_id))
 
+@socketio.on('leave')
+@login_required
+def leave(board_id):
+     emit('status', {'msg': getUser() + ' has left the room.', 'style': 'width: 100%;color:blue;text-align: right'}, room=str(board_id))
+     leave_room(str(board_id))
 
+@socketio.on('message')
+@login_required
+def message(board_id,message_text):
+     print("message")
+     emit('status', {'msg': getUser() + ' said: ' + message_text, 'style': 'width: 100%;color:blue;text-align: right'}, room=str(board_id))
+    
 		
 # @socketio.on('messaged', namespace='/chat')
 # def messaged(message):

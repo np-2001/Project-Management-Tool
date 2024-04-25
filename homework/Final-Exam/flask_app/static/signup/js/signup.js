@@ -19,7 +19,12 @@ function accountCreation() {
                 window.location.href = "/login";
 
               } else {
-                console.log("Incorrect signup");
+                console.log("User Exists");
+                const message = document.createElement("p");
+                message.textContent = "User already exists. Please choose a different email.";
+                const signup_container = document.querySelector("#signup-container")
+                message.style.color = "#fff";
+                signup_container.appendChild(message);
               }              
             } 
     });

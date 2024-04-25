@@ -33,4 +33,6 @@ function routeToBoardCreation() {
     window.location.href = "/board_creation";
 }
 
-
+function routeToExistingBoards() {
+  window.location.href = "/board_view"
+}

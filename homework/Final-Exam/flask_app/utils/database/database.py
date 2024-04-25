@@ -116,7 +116,7 @@ class database:
                 elif table == 'boards':
                     self.query(query="INSERT INTO `boards` ({}) VALUES (%s)".format(column_str),parameters=parameter)
                 elif table == 'boardgroups':
-                    self.query(query="INSERT INTO `boardgroups` ({}) VALUES (%s,%s)".format(column_str),parameters=parameter)
+                    self.query(query="INSERT INTO `boardgroups` ({}) VALUES (%s,%s,%s)".format(column_str),parameters=parameter)
                 elif table == 'cards':
                     self.query(query="INSERT INTO `cards` ({}) VALUES (%s,%s,%s,%s)".format(column_str),parameters=parameter)
         print('I insert things into the database.')
@@ -168,12 +168,12 @@ class database:
 
     def CreateBoard(self,name,emails):
         #self.query(query="INSERT INTO `users` ({}) VALUES (%s,%s,%s)".format(column_str),parameters=parameter)
-        self.insertRows(table='boards',columns=['board_name'],parameters=[["name"]])
+        self.insertRows(table='boards',columns=['board_name'],parameters=[[name]])
         id = self.query(query="SELECT COUNT(*) FROM boards;")
         parameter_list = []
         for email in emails:
-            parameter_list.append([email,id[0]["COUNT(*)"]])
-        self.insertRows(table='boardgroups',columns=['user_email','board_id'],parameters=parameter_list)
+            parameter_list.append([email,id[0]["COUNT(*)"],name])
+        self.insertRows(table='boardgroups',columns=['user_email','board_id','board_name'],parameters=parameter_list)
         return {'success': 1,"id":id}
     
     def GetBoardData(self,board_id):
@@ -187,3 +187,7 @@ class database:
         board_data["cards"] = cards
         # print(board_data)
         return board_data
+
+    def GetUserBoards(self,user_email):
+        boards = self.query(query="SELECT board_id, board_name FROM boardgroups WHERE user_email = %s;",parameters=[user_email])
+        return boards
