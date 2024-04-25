@@ -75,6 +75,7 @@ def processsignup():
         return json.dumps({'success':1})
     else:
         return json.dumps({'success':2})
+    
 @app.route('/processBoardCreation', methods = ["POST"])
 def processBoardCreation():
     form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
@@ -95,10 +96,6 @@ def processBoardCreation():
 # CHATROOM RELATED
 #######################################################################################
 
-@app.route('/home')
-@login_required
-def home():
-    return render_template('home.html',user=getUser(), class_name = "Main-Text")
 
 @app.route('/board_display/<int:board_id>')
 @login_required
@@ -109,11 +106,9 @@ def board_display(board_id):
     if (count[0]["COUNT(*)"] != 0):
         return render_template('board_display.html',user=getUser(), board_data=board_data, class_name = "Main-Text",board_id=board_id)
     else:
-        return render_template('board_view.html',user=getUser(),class_name = "Main-Text",allowed="False")
-@app.route('/chat')
-@login_required
-def chat():
-    return render_template('chat.html', user=getUser())
+        user_boards = db.GetUserBoards(user_email=getUser())
+        print(user_boards)
+        return render_template('board_view.html',user=getUser(),class_name = "Main-Text",allowed="False",user_boards=user_boards)
 
 @socketio.on('joined')
 @login_required
@@ -143,7 +138,7 @@ def message(board_id,message_text):
 # OTHER
 @app.route('/')
 def root():
-	return redirect("/home")
+	return redirect("/login")
 
 @app.route("/static/<path:path>")
 def static_dir(path):
