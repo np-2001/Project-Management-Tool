@@ -1,4 +1,5 @@
-function accountCreation() {
+// Used to create a user account
+accountCreation = function () {
     // package data in a JSON object
     const email = document.querySelector("#email");
     const feedback = document.querySelector("#password");
@@ -14,7 +15,7 @@ function accountCreation() {
         type: "POST",
         success:function(retruned_data){
               retruned_data = JSON.parse(retruned_data);
-              if (retruned_data["success"] == 1) {
+              if (retruned_data["success"] === 1) {
                 console.log("Valid")
                 window.location.href = "/login";
 

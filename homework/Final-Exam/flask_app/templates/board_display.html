@@ -2,8 +2,12 @@
 <!-- Citation: https://stackoverflow.com/questions/36090767/access-values-from-a-dict-in-a-function-called-in-a-jinja-expression -->
 <!-- Citation: https://www.geeksforgeeks.org/how-to-remove-specific-div-element-by-using-javascript/ -->
 {% block maincontent %}
+
+<!-- Board viewing page -->
 <button class="Chat-Button-Structure Chat-Button-Design" onclick="JoinChat('{{board_id}}')"> Chat </button>
+
 <div class="board-structure board-design" id="Board: {{board_id}}">
+    <!-- Popup for creating cards -->
     <div class="invisible" id="Card-Popup">
         <div class="Card-Creation-Header-Structure Card-Creation-Header-Design">
             <h1 class="Card-Creation-Title"> New Card </h1>
@@ -16,7 +20,7 @@
         <textarea class="card-body-textarea-structure card-body-textarea-design" id="New-Card-Body" name="card-text" title="Body of card"></textarea>
         <button class="Card-Creation-Button-Structure Card-Creation-Button-Design" id="Submit-Card" onclick="SubmitCard('{{board_id}}')">Create Card</button>
     </div>
-
+    <!-- Popup for editing cards -->
     <div class="invisible" id="Card-Edit-Popup">
         <div class="Card-Creation-Header-Structure Card-Creation-Header-Design">
             <h1 class="Card-Creation-Title"> Edit Card </h1>
@@ -28,7 +32,7 @@
         
         <button class="Card-Creation-Button-Structure Card-Creation-Button-Design" id="Submit-Card-Edit" onclick="EditCard()">Edit Card</button>
     </div>
-
+    <!-- Chat popup -->
     <div class="invisible" id="Chat">
         <div class="Card-Creation-Header-Structure Card-Creation-Header-Design">
             <h1 class="Card-Creation-Title"> Chat </h1>
@@ -43,7 +47,7 @@
 
         <button class="Card-Creation-Button-Structure Card-Creation-Button-Design"  onclick="SubmitMessage('{{board_id}}')">Submit message</button>
     </div>
-
+    <!-- Todo column -->
     <div class="ToDo-Structure ToDo-Design">
         <h1 class="Column-Title"> To Do</h1>
         <div class="Card-List-Structure Card-List-Design DropColumn" id="ToDoColumn"> 
@@ -64,7 +68,7 @@
         <button class="add-card-structure add-card-design" id="ToDo" onclick="CreateCard('ToDo')">Add Card</button>
 
     </div>
-
+    <!-- Doing Column -->
     <div class="Doing-Structure Doing-Design">
         <h1 class="Column-Title"> Doing </h1>
         <div class="Card-List-Structure Card-List-Design DropColumn" id="DoingColumn"> 
@@ -83,7 +87,7 @@
         </div>
         <button class="add-card-structure add-card-design" id="Doing" onclick="CreateCard('Doing')">Add Card</button>
     </div>
-
+    <!-- Completed Popup -->
     <div class="Completed-Structure Completed-Design">
         <h1 class="Column-Title"> Completed </h1>
         <div class="Card-List-Structure Card-List-Design  DropColumn" id="CompletedColumn"> 
@@ -116,6 +120,7 @@
             console.log('Socket.IO connection established');
         });
         
+        // Socket for editing card
         socket.on('card_edited', function(data) {
             console.log("edit time");
             console.log(data.card_id);
@@ -131,13 +136,14 @@
 
         });
 
+        // Socket for moving card
         socket.on('card_moved', function(data) {
             console.log("deletion time");
             console.log(data.card_id);
             let card = document.getElementById(data.card_id);
             card.remove();
             
-            let column;
+            let column = "";
             console.log(data.new_column);
             if (data.new_column == "ToDo") {
                 column = document.getElementById("ToDoColumn");
@@ -151,6 +157,7 @@
 
         });
 
+        // Socket for deleting card
         socket.on('card_deleted', function(data) {
             console.log("deletion time");
             console.log(data.card_id);
@@ -158,10 +165,12 @@
             card.remove();
 
         });
+
+        // Socket for creating card
         socket.on('card_added', function(data) {
-            console.log("test")
+            console.log("test");
             var boardId = "Board: " + data.board_id;
-            console.log(boardId)
+            console.log(boardId);
             var listName = data.card_list;
             var cardData = {
                 card_id: data.card_id,
@@ -173,7 +182,7 @@
             let Board = document.getElementById(boardId);
 
             //Specific Column
-            let column = Board.getElementsByClassName(`${listName}-Structure`)[0]
+            let column = Board.getElementsByClassName(`${listName}-Structure`)[0];
             
             //List of items in column
             let cardList = column.getElementsByClassName('Card-List-Structure')[0];
@@ -233,9 +242,10 @@
             popup.className = "invisible";
         });
 
+        // Socket for adding message
         socket.on('status', function(data) { 
-            console.log("test")
-            console.log(data)
+            console.log("test");
+            console.log(data);
             let tag  = document.createElement("p");
             let text = document.createTextNode(data.msg);
             let element = document.getElementById("chat-box");

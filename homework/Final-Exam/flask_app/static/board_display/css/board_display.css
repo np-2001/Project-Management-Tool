@@ -1,3 +1,4 @@
+/* Structure for page */
 .board-structure {
     display: flex;
     justify-content: center;
@@ -13,15 +14,15 @@
     height: 80vh;
 
 }
-
+/* Design of board */
 .board-design {
     background-color: #3b3b3b;
 }
-
+/* Design for column title */
 .Column-Title {
     color: #fff;
 }
-
+/* Structure of column */
 .ToDo-Structure,
 .Doing-Structure,
 .Completed-Structure {
@@ -33,13 +34,13 @@
     border-radius: 2%;
 
 }
-
+/* Design for column */
 .ToDo-Design,
 .Doing-Design,
 .Completed-Design {
     border: solid #fff 0.5em;
 }
-
+/* Structure of card list in each column */
 .Card-List-Structure {
     overflow-y: auto;
     margin: 3%;
@@ -48,11 +49,11 @@
     display: flex;
     flex-direction: column;
 }
-
+/* Design of card list in each column */
 .Card-List-Design {
     background-color: aliceblue;
 }
-
+/* Card structure */
 .Card-Structure {
     padding: 1vw;
     border-radius: 0.5vw;
@@ -63,12 +64,12 @@
     max-height: 30%;
     min-height: 30%;
 }
-
+/* Card design */
 .Card-Design {
     background-color: #fff;
 
 }
-
+/* Structure for button to add card */
 .add-card-structure {
     margin-top: auto; 
     padding: 0.5vw 1vw;
@@ -76,19 +77,20 @@
     margin: 3%;
     border-radius: 50vh;
 }
-
+/* Design of button to add card */
 .add-card-design {
     background-color: #ADD8E6; 
     color: #FFF; 
 }
-
+/* Hover effect for button */
 .add-card-design:hover {
     background-color: #203354; 
 }
-
+/* Used to hide popups */
 .invisible {
     display: none;
 }
+/* Structure for card creation popup */
 .Card-Creation-Structure {
     z-index: 20;
     
@@ -101,12 +103,14 @@
     border-radius: 0.5vw;
 }
 
+/* Design for card creation popup */
 .Card-Creation-Design {
     background-color: #ADD8E6;
     border: solid #3b3b3b 0.5em;
 
 }
 
+/* Structure of submit button for card creation */
 .Card-Creation-Button-Structure {
     margin-top: auto; 
     padding: 0.5vw 1vw;
@@ -116,11 +120,13 @@
     
 }
 
+/* Design for submit button */
 .Card-Creation-Button-Design {
     background-color: #3b3b3b; 
     color: #FFF; 
 }
 
+/* Structure for input of card name */
 .card-name-input-structure {
     margin: 3%;
     border-radius: 3%;
@@ -131,6 +137,7 @@
 
 }
 
+/* Structure for input of card body */
 .card-body-textarea-structure {
     margin: 3%;
     border-radius: 3%;
@@ -138,23 +145,17 @@
     overflow-y: auto;
 }
   
-.card-body-textarea-design {
-
-}
-
-.card-name-input-design {
-
-}
 
 #New-Card-Body {
     flex-grow: 1;
 }
-
+/* Structure of Label of card creation */
 .Card-Creation-Label-Structure {
     align-self: flex-start;
     padding-left: 5%;
 }
 
+/* Design of card label  */
 .Card-Creation-Label-Design {
     color: #3b3b3b;
 }
@@ -177,25 +178,20 @@
     flex-grow: 1;
 }
 
+/* Structure of Button for closing card creation  */
 .Close-Card-Creation-Structure {
     border-radius: 30%;
     border-color: #fff;
 }
 
+/* Design of Button for closing card creation */
 .Close-Card-Creation-Design {
     background-color: #ADD8E6;
     color: #fff;
 }
 
 
-.Card-Title-Structure {
-
-}
-
-.Card-Title-Design {
-
-}
-
+/* Structure of the body of card */
 .Card-Body-Structure {
     flex-grow: 1;
     border: solid #3b3b3b 0.2em;
@@ -206,19 +202,16 @@
 
 }
 
-.Card-Body-Design {
 
-}
-
+/* Container to hold delete and edit buttons */
 .Card-Button-Container {
     display: flex;
     justify-content: space-between;
     margin-top: 1%;
 }
 
-.Edit-Button-Card-Structure {
-}
 
+/* Design for edit card */
 .Edit-Button-Card-Design {
     background-color: #ADD8E6;
     padding: 1%;
@@ -228,9 +221,7 @@
 }
 
 
-.Delete-Button-Card-Structure {
-}
-
+/* Design for delete button */
 .Delete-Button-Card-Design {
     background-color: #ADD8E6;
     padding: 1%;
@@ -248,6 +239,7 @@
     flex-direction: column;
 }
 
+/* Structure of chat button  */
 .Chat-Button-Structure {
     margin-left: auto;
     margin-right: 1%;
@@ -256,20 +248,22 @@
     padding: 0.5%;
 }
 
+/* Design of chat button */
 .Chat-Button-Design {
     color: #fff;
     background-color: #3b3b3b;
     border-radius: 50vh;
 }
-
+/* Handles dragging */
 .dragging {
     opacity: 0.5;
 }
-  
+/* Handles dragging over column */
 .dragover {
     opacity: 0.5;
 }
 
+/* Chat box styling */
 #chat-box {
     width: 100%;
     height: 350px;

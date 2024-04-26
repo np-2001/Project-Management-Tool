@@ -1,3 +1,4 @@
+/* Structure of main page */
 .Main-Text {
     justify-content: center;
     align-items: center;
@@ -8,6 +9,7 @@
     flex-direction: column;
 }
 
+/* Structure for log in page */
 .Login-structure { 
     display: flex; 
     /* display: none; */
@@ -22,14 +24,15 @@
     border-radius: 1vh;
 }
 
+/* Design for log in page */
 .Login-design {
     background-color: #3b3b3b; 
 
 }
 
+/* Structure for popup on if you want to create board or view a board */
 .board-option-structure { 
     display: flex; 
-    /* display: none; */
     justify-content: center; 
     align-items: center; 
     text-align: center; 
@@ -40,16 +43,19 @@
     padding-bottom: 10%; 
 }
 
+/* Design for popup on if you want to create board or view a board */
 .board-option-design {
     background-color: #3b3b3b; 
 }
 
+/* Structure of buttons on page */
 .board-option-buttons {
     display: flex;
     flex-direction: row;
     gap: 2%;
 }
 
+/* Structure for input container for login */
 .login-input-structure {
     text-align: center;
     width: 50%;
@@ -59,11 +65,13 @@
     border-radius: 1vh; 
 }
 
+/* Design for input container for login */
 .login-input-design {
     background-color: #f2f2f2; 
 
 }
 
+/* Structure of login button */
 .login-button-structure {
     text-align: center; 
     padding: 2vh 4vw; 
@@ -74,20 +82,23 @@
     
 }
 
+/* Design for board option header text */
 #board-option-text {
     color: #FFF; 
     margin-top: -20%;
 
 }
+/* Design of button to press when logging in */
 .login-button-design {
     background-color: #ADD8E6; 
     color: #FFF; 
 }
-
+/* Hover effect for login button */
 .login-button-design:hover {
     background-color: #203354; 
 }
 
+/* Structure of signup button */
 .signup-button-structure {
     display: inline-block;
     text-align: center;
@@ -101,15 +112,17 @@
     text-decoration: none;
 }
 
-
+/* Design of signup button */
 .signup-button-design {
     color: white;
 }
+
+/* Hover effect for signup button */
 .signup-button-design:hover {
     color: #ADD8E6; 
 }
 
-
+/* Structure for button to view boards */
 .board-button-structure {
     text-align: center; 
     padding: 2vh 4vw; 
@@ -119,11 +132,12 @@
     border-radius: 1vh; 
     margin: 1%;
 }
-
+/* Design of button to view boards  */
 .board-button-design {
     background-color: #ADD8E6; 
     color: #FFF; 
 }
+/*  hover effect of button to view boards */
 .board-button-design:hover {
     background-color: #203354; 
 }

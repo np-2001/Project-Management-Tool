@@ -1,46 +1,54 @@
+/* Structure of board view page */
 .BoardView-Structure {
-    display: flex;
-    flex-direction: column;
-    padding: 5%;
-    border-radius: 2vh;
-    width: 50%;
-    height: 50vh;
-    margin: 0 auto;
-  }
-  
-  .BoardView-design {
-    background-color: #3b3b3b;
-  }
-  
-  #board-creation-text {
-    color: #FFF;
-    margin: 0;
-    font-size: x-large;
-  }
-  
-  .board-listing-structure {
-    margin: 2%;
-  }
-  
-  .board-listing-design {
-    text-decoration: none;
-    color: #fff;
-    font-size: x-large;
-  }
-  
-  .board-view-container-structure {
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1;
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  border-radius: 2vh;
+  width: 50%;
+  height: 50vh;
+  margin: 0 auto;
+}
 
-  .board-view-container-design {
-    background-color: #ADD8E6;
-    border-radius: 2%;
-  }
+/* Design of board view page */
+.BoardView-design {
+  background-color: #3b3b3b;
+}
 
-  .Not-allowed {
-    color: #fff;
-  }
+/* Design of text for board creation page header */
+#board-creation-text {
+  color: #FFF;
+  margin: 0;
+  font-size: x-large;
+}
+
+/* Board listing container structure */
+.board-listing-structure {
+  margin: 2%;
+}
+
+/* Board Listing design */
+.board-listing-design {
+  text-decoration: none;
+  color: #fff;
+  font-size: x-large;
+}
+
+/* Structure of container for board view (Every Link)*/
+.board-view-container-structure {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+/* Design of container for board view (Every Link)*/
+.board-view-container-design {
+  background-color: #ADD8E6;
+  border-radius: 2%;
+}
+
+/* Design for text when user tries to view board they don't have permission for  */
+.Not-allowed {
+  color: #fff;
+}
